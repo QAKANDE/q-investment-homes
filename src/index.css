@@ -3,10 +3,34 @@
 body {
   margin: 0;
   font-family: "Lora", serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#root {
+  background-color: #fce7be;
+  color: #32021e;
+}
+#root h3 {
+  color: #32021e;
+}
+#root p {
+  color: #32021e;
+}
+#root button {
+  background-color: #6a2539;
+  border: 0;
+  color: #f8a074;
+}
+#root a {
+  color: #32021e;
+}
+/* #root a:hover {
+  border-bottom: 3px solid #6a2539;
+  border-right: 2px solid #6a2539;
+  border-left: 2px solid #6a2539;
+  border-top: 3px solid #6a2539;
+  text-decoration: none;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

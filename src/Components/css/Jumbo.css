@@ -1,0 +1,8 @@
+.jumbo {
+  background-image: url("../../Assets/resort3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  /* position: relative;
+  padding: 26.25% 0 0 !important; */
+}

@@ -1,16 +1,17 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import NavBar from "./Components/NavBar";
-import Home from "./Components/Home";
-import Footer from "./Components/Footer";
+import Jumbo from "./Components/Jumbo";
+import About from "./Components/About";
+import PropertyListings from "./Components/PropertiesListings";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <Home />
-      <Footer />
+      <Jumbo />
+      <About />
+      <PropertyListings />
     </div>
   );
 }
