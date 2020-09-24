@@ -35,6 +35,7 @@ class About extends Component {
             </div>
           </Col>
         </Row>
+        <hr></hr>
       </Container>
     );
   }

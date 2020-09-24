@@ -6,7 +6,7 @@ class ForgottenPassword extends Component {
   render() {
     return (
       <Container>
-        <div className="mt-4">
+        <div className="mt-5">
           <h3 className="d-flex justify-content-center">
             We Understand, These Things Happen...
           </h3>

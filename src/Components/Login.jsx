@@ -6,7 +6,7 @@ class Login extends Component {
   state = {};
   render() {
     return (
-      <div id="Log-In" className="text-center">
+      <div id="Log-In" className="mt-5">
         <h3 className="d-flex justify-content-center">Log In</h3>
         <h3 className="d-flex justify-content-center">
           Sign Into An Existing Account
@@ -46,7 +46,7 @@ class Login extends Component {
           </div>
           <div className="d-flex justify-content-center mb-5">
             <Link to={"/SignUp"}>
-              <a>Dont Have An Account ? Sign Up Here</a>
+              <a>Don't Have An Account ? Sign Up Here</a>
             </Link>
           </div>
         </Container>
