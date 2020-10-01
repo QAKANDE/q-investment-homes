@@ -1,0 +1,15 @@
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card-body {
+  background-color: #fce7be;
+}
+.card {
+  border: 0 !important;
+}
+a.blog-link :hover {
+  text-decoration: none;
+}

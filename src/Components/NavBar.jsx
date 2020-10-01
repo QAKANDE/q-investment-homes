@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Nav, NavDropdown, Navbar, Button } from "react-bootstrap";
 import "./css/NavBar.css";
 import { Link } from "react-router-dom";
+import archikraftconsults from "../Assets/archi-kraft-consults.png";
 
 class NavBar extends Component {
   state = {};
@@ -9,7 +10,7 @@ class NavBar extends Component {
     return (
       <Navbar id="navbar-wrapper" expand="lg">
         <Link to={"/"} className="nav-brand">
-          <img src="../Assets/archi-kraft-consults.png"></img>
+          <img src={archikraftconsults} id="navBar-brand"></img>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -29,7 +30,7 @@ class NavBar extends Component {
               <NavDropdown.Item href="#action/3.1">
                 How it works
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">About</NavDropdown.Item>
+          
               <NavDropdown.Item href="#action/3.2">
                 Frequently Asked Questions
               </NavDropdown.Item>

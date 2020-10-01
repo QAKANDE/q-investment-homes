@@ -9,8 +9,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
-import ForgottenPassword from "./Components/ForgottenPassword"
+import ForgottenPassword from "./Components/ForgottenPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
+import TermsOfUse from "./Components/TermsOfUse";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +21,8 @@ ReactDOM.render(
       <Route path="/SignUp" exact component={SignUp} />
       <Route path="/Login" exact component={Login} />
       <Route path="/PasswordRecovery" exact component={ForgottenPassword} />
+      <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
+      <Route path="/TermsOfUse" exact component={TermsOfUse} />
       <Route path="/" exact component={App}></Route>
       <Footer />
     </Router>

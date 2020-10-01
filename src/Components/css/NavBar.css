@@ -20,3 +20,6 @@
   background-color: #6a2539 !important;
   font-weight: bolder !important;
 }
+#navBar-brand {
+  width: 10vh;
+}

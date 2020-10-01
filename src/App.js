@@ -5,6 +5,8 @@ import Jumbo from "./Components/Jumbo";
 import About from "./Components/About";
 import PropertyListings from "./Components/PropertiesListings";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import GroupBuying from "./Components/GroupBuying";
+import LatestInsights from "./Components/LatestInsights";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Jumbo />
       <About />
       <PropertyListings />
+      <GroupBuying />
+      <LatestInsights />
     </div>
   );
 }

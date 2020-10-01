@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./css/Footer.css";
 class Footer extends Component {
   state = {};
@@ -33,13 +34,17 @@ class Footer extends Component {
             <Col>
               <span className="Footer-header">Terms And Conditions</span>
               <br />
-              <a className="footer-anchor" href="#">
-                Privacy Policy
-              </a>
+              <Link to={"/PrivacyPolicy"}>
+                <a className="footer-anchor" href="#">
+                  Privacy Policy
+                </a>
+              </Link>
               <br />
+              <Link to={"/TermsOfUse"}>
               <a className="footer-anchor" href="#">
-                Cookie Policy
+                Terms Of Use
               </a>
+              </Link>
             </Col>
             <Col>
               <span className="Footer-header">Contact Us</span>
