@@ -1,5 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Container, Card, CardDeck, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./css/PropertyListing.css";
 class PropertyListings extends Component {
   state = {
     properties: [],
@@ -38,28 +40,46 @@ class PropertyListings extends Component {
               enim ad minim veniam, quis
             </p>
           </div>
-          <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-1 row-cols-xl-3 mb-4 text-center">
-            {this.state.properties.slice(3, 9).map((property, i) => {
+          {/* <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-1 row-cols-xl-3 mb-4 text-center"> */}
+          <CardDeck>
+            {this.state.properties.slice(0, 3).map((property, i) => {
               return (
-                <Card className="Col" key={i}>
+                <Card key={i}>
                   <Card.Img variant="top" src={property.image_url} />
                   <Card.Body>
-                    <Card.Title>{property.property_type}</Card.Title>
+                    <Card.Title>
+                      <p>{property.property_type}</p>
+                      <p>{property.displayable_address}</p>
+                    </Card.Title>
                     <hr></hr>
                     <Card.Text>
                       <p>{property.short_description}</p>
-                      <p>{property.num_bedrooms} Bedrooms</p>
+                      <hr></hr>
+                      <div className="d-flex justify-content-between">
+                        <div>
+                          <h5>Bedrooms</h5>
+                          <h4>{property.num_bedrooms}</h4>
+                        </div>
+                        <div>
+                          <h5>Price</h5>
+                          <h4>£{property.price}</h4>
+                        </div>
+                      </div>
+                      <hr></hr>
+                      <h5>Minimum Investment</h5>
+                      <h4>£{property.price * 0.1}</h4>
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">
-                      Last updated 3 mins ago
-                    </small>
+                    <Link to={"/CalculateROI"}>
+                      <button>Calculate ROI ( Return On InvestMent )</button>
+                    </Link>
                   </Card.Footer>
                 </Card>
               );
             })}
-          </Row>
+          </CardDeck>
+          {/* </Row> */}
         </Container>
         <hr></hr>
       </>
