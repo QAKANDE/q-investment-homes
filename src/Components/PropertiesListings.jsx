@@ -54,9 +54,9 @@ class PropertyListings extends Component {
               Some Investment Opportunities
             </h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis
+              The Archi-Kraft Consults real estate crowdfunding platform is the
+              only platform where all investors actually own the properties, can
+              stay there if they want and earn high yield rental income.
             </p>
           </div>
           {/* <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-1 row-cols-xl-3 mb-4 text-center"> */}
@@ -81,7 +81,7 @@ class PropertyListings extends Component {
                     </Card.Title>
                     <hr></hr>
                     <Card.Text>
-                      <h4>{property.building_size.size} Square Feets</h4>
+                      {/* <h4>{property.building_size.size} Square Feets</h4> */}
                       <hr></hr>
                       <div className="d-flex justify-content-between">
                         <div>
@@ -102,7 +102,10 @@ class PropertyListings extends Component {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <Link to={"/CalculateROI"}>
+                    <Link to={"/Details/" + property.property_id}>
+                      <button className="mt-3 mb-3">More Details</button>
+                    </Link>
+                    <Link to={"/CalculateROI/" + property.property_id}>
                       <button>Calculate ROI ( Return On InvestMent )</button>
                     </Link>
                   </Card.Footer>

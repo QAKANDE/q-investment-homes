@@ -41,14 +41,12 @@ class Footer extends Component {
               </Link>
               <br />
               <Link to={"/TermsOfUse"}>
-              <a className="footer-anchor" href="#">
-                Terms Of Use
-              </a>
+                <a className="footer-anchor" href="#">
+                  Terms Of Use
+                </a>
               </Link>
             </Col>
-            <Col>
-              <span className="Footer-header">Contact Us</span>
-            </Col>
+
             <Col>
               <span className="Footer-header">Social Media</span>
             </Col>

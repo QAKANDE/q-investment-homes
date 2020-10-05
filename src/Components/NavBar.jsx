@@ -17,11 +17,13 @@ class NavBar extends Component {
           <Nav className="ml-auto">
             <NavDropdown title="The Company" className="basic-nav-dropdown">
               <NavDropdown.Item
+                as={Link}
+                to={"/TheCompany"}
                 className="navbar-dropdown-anchor"
-                href="#action/3.1"
               >
                 The Company
               </NavDropdown.Item>
+
               <NavDropdown.Item href="#action/3.2">
                 The Founder
               </NavDropdown.Item>
@@ -30,13 +32,15 @@ class NavBar extends Component {
               <NavDropdown.Item href="#action/3.1">
                 How it works
               </NavDropdown.Item>
-          
+
               <NavDropdown.Item href="#action/3.2">
                 Frequently Asked Questions
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#home">Our Portfolio</Nav.Link>
-            <Nav.Link href="#link">Contact Us</Nav.Link>
+            <Link to={"/ContactUs"} className="nav-link">
+              Contact Us
+            </Link>
             <Link to={"/Login"} className="nav-link">
               Login
             </Link>

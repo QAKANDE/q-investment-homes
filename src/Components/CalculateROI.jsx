@@ -19,15 +19,16 @@ class CalculateROI extends Component {
     });
   };
 
-  calculateROI = (value) => {
-    const convertValue = parseInt(value);
+  calculateROI = (e) => {
+    e.preventDefault();
+    const convertValue = parseInt(this.state.investmentValue);
     const newExpectedInvestmentIncome = 5000 * 52;
     const newExpectedExpenses = 9000;
     const newExcessCash = newExpectedInvestmentIncome - newExpectedExpenses;
     const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
     const newCapitalGainsGrowth = convertValue * 0.05;
     const newNetProfit = newCapitalGainsGrowth + newExcessCash;
-      const newROI = (newNetProfit / convertValue) * 100;
+    const newROI = (newNetProfit / convertValue) * 100;
 
     this.setState({
       expectedInvestmentIncome: newExpectedInvestmentIncome,
@@ -38,7 +39,7 @@ class CalculateROI extends Component {
       netProfit: newNetProfit,
       ROI: newROI,
     });
-    console.log(this.state.ROI);
+    console.log("Quadri");
   };
   render() {
     return (
@@ -65,7 +66,7 @@ class CalculateROI extends Component {
               </Form.Text>
             </Form.Group>
             <button
-              onClick={() => this.calculateROI(this.state.investmentValue)}
+              onClick={(e) => this.calculateROI(e)}
             >
               Calculate ROI ( Return On Investment )
             </button>

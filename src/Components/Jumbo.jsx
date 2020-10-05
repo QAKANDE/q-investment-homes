@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Jumbotron, Container } from "react-bootstrap";
+import { Jumbotron, Container, Button } from "react-bootstrap";
 import "./css/Jumbo.css";
 
 class Jumbo extends Component {
@@ -10,12 +10,11 @@ class Jumbo extends Component {
   render() {
     return (
       <Jumbotron className="jumbo">
-      <h1>Hello, world!</h1>
-      <p>
-        This is a simple hero unit, a simple jumbotron-style component for calling
-        extra attention to featured content or information.
-      </p>
-    </Jumbotron>
+        <h1>Start Small And Become A Digital Investor</h1>
+        <h3>10% - 17% Holiday Rental Income</h3>
+        <h3>30% - 40% Spa And Resort Income</h3>
+        <Button>Get Started</Button>
+      </Jumbotron>
     );
   }
 }

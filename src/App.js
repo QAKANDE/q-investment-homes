@@ -14,7 +14,7 @@ function App() {
       <Jumbo />
       <About />
       <PropertyListings />
-      <GroupBuying />
+
       <LatestInsights />
     </div>
   );
