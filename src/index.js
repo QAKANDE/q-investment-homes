@@ -17,6 +17,7 @@ import TermsOfUse from "./Components/TermsOfUse";
 import TheCompany from "./Components/TheCompany";
 import ContactUs from "./Components/ContactUs";
 import Details from "./Components/Details";
+import DetailsModal from "./Components/DetailsModal";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -31,6 +32,7 @@ ReactDOM.render(
       <Route path="/TheCompany" exact component={TheCompany} />
       <Route path="/ContactUs" exact component={ContactUs} />
       <Route path="/Details/:id" exact component={Details} />
+      <Route path="/Detailss/:id" exact component={DetailsModal} />
       <Route path="/" exact component={App}></Route>
       <Footer />
     </Router>

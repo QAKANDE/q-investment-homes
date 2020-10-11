@@ -10,7 +10,15 @@
   background-color: #fce7be;
 }
 .card {
+  box-shadow: 0 6px 10px #6a2539, 0 0 6px#6a2539;
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #f8a074 !important;
   border: 0 !important;
+  background-color: #fce7be !important;
 }
 a.blog-link :hover {
   text-decoration: none;

@@ -3,6 +3,9 @@ import { Container, Form, FormGroup, Button } from "react-bootstrap";
 
 class CalculateROI extends Component {
   state = {
+    details: {},
+    propertyName: "",
+    propertyPrice: "",
     investmentValue: "",
     expectedInvestmentIncome: null,
     expectedExpenses: null,
@@ -12,6 +15,26 @@ class CalculateROI extends Component {
     netProfit: null,
     ROI: null,
   };
+  //   componentDidMount = async () => {
+  //     const propertyId = this.props.match.params.id;
+  //     const res = await fetch(
+  //       `https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${propertyId}`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "x-rapidapi-host": "realtor.p.rapidapi.com",
+  //           "x-rapidapi-key":
+  //             "b41254000bmshb62e314b3254f24p1dac92jsn6f1fc3174939",
+  //         },
+  //       }
+  //     );
+  //     const data = await res.json();
+  //     console.log(data);
+  //     this.setState({
+  //       details: data.properties[0],
+  //     });
+  //     console.log(this.state.details);
+  //   };
 
   updateInvestmentValue = (event) => {
     this.setState({
@@ -28,7 +51,7 @@ class CalculateROI extends Component {
     const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
     const newCapitalGainsGrowth = convertValue * 0.05;
     const newNetProfit = newCapitalGainsGrowth + newExcessCash;
-    const newROI = (newNetProfit / convertValue) * 100;
+    const newROI = Math.round((newNetProfit / convertValue) * 100);
 
     this.setState({
       expectedInvestmentIncome: newExpectedInvestmentIncome,
@@ -38,8 +61,10 @@ class CalculateROI extends Component {
       capitalGainsGrowth: newCapitalGainsGrowth,
       netProfit: newNetProfit,
       ROI: newROI,
+      investmentValue: "",
     });
-    console.log("Quadri");
+    console.log(newROI);
+    console.log(this.state.ROI);
   };
   render() {
     return (
@@ -47,8 +72,9 @@ class CalculateROI extends Component {
         <div className="d-flex justify-content-center mt-2">
           <h3>Calculate ROI ( Return On Investment )</h3>
         </div>
+        <img src={this.state.details.thumbnail}></img>
         <div className="d-flex justify-content-center mt-2">
-          <h3>Property name itself placeholder</h3>
+          <h3>{this.state.details.description}</h3>
         </div>
 
         <div className="mt-3">
@@ -65,9 +91,7 @@ class CalculateROI extends Component {
                 Minimum Investment - £2,000,000
               </Form.Text>
             </Form.Group>
-            <button
-              onClick={(e) => this.calculateROI(e)}
-            >
+            <button onClick={(e) => this.calculateROI(e)}>
               Calculate ROI ( Return On Investment )
             </button>
           </Form>

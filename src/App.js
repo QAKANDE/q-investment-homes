@@ -8,13 +8,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import GroupBuying from "./Components/GroupBuying";
 import LatestInsights from "./Components/LatestInsights";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <Jumbo />
       <About />
-      <PropertyListings />
-
+      <PropertyListings {...props}/>
       <LatestInsights />
     </div>
   );

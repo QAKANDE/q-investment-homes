@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Form, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./css/ForgottenPassword.css";
 class ForgottenPassword extends Component {
   state = {};
   render() {
     return (
       <Container>
-        <div className="mt-5">
+        <div className="mt-5" id="forgotPassword">
           <h3 className="d-flex justify-content-center">
             We Understand, These Things Happen...
           </h3>
