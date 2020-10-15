@@ -9,6 +9,7 @@ import {
   Badge,
   Form,
   Carousel,
+  Accordion,
   Modal,
   Spinner,
 } from "react-bootstrap";
@@ -60,10 +61,12 @@ class PropertyListings extends Component {
       }
     );
     const data = await res.json();
-    this.setState(
-      { modalIsOpen: true, cardId: id, dataForModal: data.properties },
-      () => console.log(this.state.dataForModal)
-    );
+
+    this.setState({
+      modalIsOpen: true,
+      cardId: id,
+      dataForModal: data.properties,
+    });
     this.state.dataForModal.map((x) => {
       this.setState({
         surroundings: x.address.neighborhoods,
@@ -208,14 +211,9 @@ class PropertyListings extends Component {
                           </p>
                           <p>{property.address.city}</p>
                         </div>
-                        <Badge className="property-listing-badge">
-                          {property.prop_status}
-                        </Badge>
                       </Card.Title>
                       <hr></hr>
                       <Card.Text>
-                        {/* <h4>{property.building_size.size} Square Feets</h4> */}
-                        <hr></hr>
                         <div className="d-flex justify-content-between">
                           <div>
                             <h5>Bedrooms</h5>
@@ -299,38 +297,43 @@ class PropertyListings extends Component {
             contentLabel="Example Modal"
           >
             <div className="mx-3">
-              <Carousel>
-                {this.state.photos.map((photo, index) => {
-                  return (
-                    <Carousel.Item
-                      interval={1000}
-                      key={index}
-                      className="img-fluid"
-                    >
-                      <img
-                        className="d-block w-100 "
-                        src={photo.href}
-                        alt="First slide"
-                      />
-                      <Carousel.Caption>
-                        <h3>{this.capitalize(photo.tags[0].label)}</h3>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                  );
-                })}
-              </Carousel>
-              {this.state.dataForModal.map((detail, index) => {
-                return (
-                  <>
-                    <div className="d-flex justify-content-center">
-                      <h4 className="d-flex mt-1">
-                        {detail.address.line} ,{" "}
-                        {detail.address.neighborhood_name} ,
-                        {detail.address.county} , {detail.address.city}
-                      </h4>
-                    </div>
-                    <Row className="mb-5 mt-5">
-                      <Col id="overview">
+              {/* {this.state.photos.length > 0 ? (
+                <Carousel>
+                  {this.state.photos.map((photo, index) => {
+                    return (
+                      <Carousel.Item
+                        interval={1000}
+                        key={index}
+                        className="img-fluid"
+                      >
+                        <img
+                          className="d-block w-100 "
+                          src={photo.href}
+                          alt="First slide"
+                        />
+                        <Carousel.Caption>
+                          <h3>{this.capitalize(photo.tags[0].label)}</h3>
+                        </Carousel.Caption>
+                      </Carousel.Item>
+                    );
+                  })}
+                </Carousel>
+              ) : (
+                <div></div>
+              )} */}
+
+              <Row>
+                <Col lg={8}>
+                  {this.state.dataForModal.map((detail, index) => {
+                    return (
+                      <>
+                        <div className="d-flex justify-content-center mt-4">
+                          <h4 className="d-flex mt-1">
+                            {detail.address.line} ,{" "}
+                            {detail.address.neighborhood_name} ,
+                            {detail.address.county} , {detail.address.city}
+                          </h4>
+                        </div>
                         <div className="mb-5 mt-5">
                           <h3>Overview</h3>
                         </div>
@@ -355,84 +358,138 @@ class PropertyListings extends Component {
                             <h3>{detail.price}</h3>
                           </div>
                         </div>
-                        <hr></hr>
-                        <div className="mb-3">
-                          <h3>Property Description</h3>
-                        </div>
-                        <div>
-                          <h3>{detail.description}</h3>
-                        </div>
-                        <hr></hr>
-                        <h3 className="d-flex justify-content-center mt-5 mb-5">
-                          Surrounding Neighborhoods
-                        </h3>
-                        {this.state.surroundings.map((x, index) => {
+                        <Accordion defaultActiveKey="0" className="mt-4">
+                          <Card>
+                            <Accordion.Toggle as={Card.Header} eventKey="0">
+                              <div className="d-flex justify-content-between">
+                                <h3>Description</h3>
+                                <h3>+</h3>
+                              </div>
+                            </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="0">
+                              <Card.Body>{detail.description}</Card.Body>
+                            </Accordion.Collapse>
+                          </Card>
+                          {/* <Card className="mt-3">
+                        <Accordion.Toggle as={Card.Header} eventKey="1">
+                          <div className="d-flex justify-content-between">
+                            <h3>Surrounding Neighbourhoods</h3>
+                            <h3>+</h3>
+                          </div>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                          <Card.Body>
+                            {this.state.surroundings.length > 0 ? (
+                              this.state.surroundings.map((x, index) => {
+                                return (
+                                  <div>
+                                    {x.name}, {x.city} , {x.state_code}
+                                  </div>
+                                );
+                              })
+                            ) : (
+                              <div className="text-center">
+                                Surrounding Neighbourhoods Currently Not
+                                Available
+                              </div>
+                            )}
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card> */}
+                          <Card className="mt-3">
+                            <Accordion.Toggle as={Card.Header} eventKey="1">
+                              <div className="d-flex justify-content-between">
+                                <h3>Features</h3>
+                                <h3>+</h3>
+                              </div>
+                            </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="1">
+                              <Card.Body>
+                                <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-3 text-center">
+                                  {this.state.featureTags.length > 0 ? (
+                                    this.state.featureTags.map(
+                                      (feature, index) => {
+                                        return (
+                                          <Col>{this.capitalize(feature)}</Col>
+                                        );
+                                      }
+                                    )
+                                  ) : (
+                                    <div className="currentlyUnavilableText">
+                                      Features Currently Not Available
+                                    </div>
+                                  )}
+                                </Row>
+                              </Card.Body>
+                            </Accordion.Collapse>
+                          </Card>
+                          <Card className="mt-3">
+                            <Accordion.Toggle as={Card.Header} eventKey="1">
+                              <div className="d-flex justify-content-between">
+                                <h3>Tax History</h3>
+                                <h3>+</h3>
+                              </div>
+                            </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="1">
+                              <Card.Body>
+                                <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-3 text-center">
+                                  {this.state.taxHistory.length > 0 ? (
+                                    this.state.taxHistory.map((tax, index) => {
+                                      return (
+                                        <Col>
+                                          <div>
+                                            <p>Year - {tax.year}</p>
+                                          </div>
+                                          <div>
+                                            <p>Tax Value - £{tax.tax}</p>
+                                          </div>
+                                        </Col>
+                                      );
+                                    })
+                                  ) : (
+                                    <div className="currentlyUnavilableText">
+                                      Tax History Currently Not Available
+                                    </div>
+                                  )}
+                                </Row>
+                              </Card.Body>
+                            </Accordion.Collapse>
+                          </Card>
+                        </Accordion>
+                      </>
+                    );
+                  })}
+                  <button id="calculateROIInsideDetailsModalBtn">
+                    Calculate ROI
+                  </button>
+                </Col>
+                <Col lg={4}>
+                  <div className="mt-4">
+                    <h3>Other Properties</h3>
+                    <Row>
+                      <Col>
+                        {this.state.properties.slice(1, 4).map((y, index) => {
                           return (
-                            <h5 className="d-flex justify-content-center">
-                              {x.name}, {x.city} , {x.state_code}
-                            </h5>
+                            <div onClick={() => this.openModal(y.property_id)}>
+                              <img src={y.thumbnail} className="mt-3"></img>
+                              <div
+                                onClick={() => this.openModal(y.property_id)}
+                                id="otherPropertiesInsideDetailsModal"
+                              >
+                                <p>
+                                  {y.address.line}
+                                  {y.address.county}
+                                </p>
+                                <p>{y.address.city}</p>
+                              </div>
+                            </div>
                           );
                         })}
-                        <hr></hr>
-                        <h3 className="d-flex justify-content-center mb-5 mt-5">
-                          Property Features
-                        </h3>
-                        <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-3 text-center">
-                          {this.state.featureTags.length > 0 ? (
-                            this.state.featureTags.map((feature, index) => {
-                              return (
-                                <Card
-                                  key={index}
-                                  className="col"
-                                  id="feature-card"
-                                >
-                                  <Card.Body>
-                                    <Card.Title>
-                                      {this.capitalize(feature)}
-                                    </Card.Title>
-                                  </Card.Body>
-                                </Card>
-                              );
-                            })
-                          ) : (
-                            <div>Loading...</div>
-                          )}
-                        </Row>
-                        <hr></hr>
-                        <h3 className="d-flex justify-content-center mt-5 mb-5">
-                          Property Tax History
-                        </h3>
-                        <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-4 text-center">
-                          {this.state.taxHistory.map((tax, index) => {
-                            return (
-                              <Card
-                                key={index}
-                                className="col"
-                                id="feature-card"
-                              >
-                                <Card.Body>
-                                  <Card.Title>Year - {tax.year}</Card.Title>
-                                  <Card.Text> Tax Value - £{tax.tax}</Card.Text>
-                                </Card.Body>
-                              </Card>
-                            );
-                          })}
-                        </Row>
                       </Col>
-                      {/* <Col id="price-details" className="mx-3">
-                          <div>
-                            <div className="d-flex justify-content-center mt-4">
-                              <h3 className="d-flex mt-4">Property Price</h3>
-                            </div>
-                            <div className="d-flex justify-content-center">
-                              <h4>£{detail.price}</h4>
-                            </div>
-                          </div>
-                        </Col> */}
                     </Row>
-                  </>
-                );
-              })}
+                  </div>
+                </Col>
+              </Row>
             </div>
           </ReactModal>
           <ReactModal isOpen={this.state.ROIModalIsOpen}>

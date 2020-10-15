@@ -11,7 +11,7 @@
   margin-bottom: 2rem;
 }
 
-.card:hover {
+#property-card:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px -2px rgb(0, 0, 0, 0.4);
 }
@@ -42,4 +42,25 @@
   color: #692569;
   border-radius: 6px;
   font-size: bolder;
+}
+.currentlyUnavilableText {
+  margin-left: 30rem;
+}
+
+#calculateROIInsideDetailsModalBtn {
+  margin-left: 40rem;
+  margin-top: 3rem;
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: bolder;
+  font-size: 1.2rem;
+  height: 48px;
+}
+
+#otherPropertiesInsideDetailsModal:hover {
+  font-size: larger;
+  font-weight: 400;
 }

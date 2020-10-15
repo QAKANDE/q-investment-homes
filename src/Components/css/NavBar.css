@@ -17,6 +17,9 @@
   height: 48px;
   border: 3px solid;
   border-bottom: 4px solid;
+  background-color: #6a2539;
+  border: 0;
+  color: #f8a074;
 }
 
 .dropdown-menu {
