@@ -5,7 +5,30 @@ import { Link } from "react-router-dom";
 import archikraftconsults from "../Assets/archi-kraft-consults.png";
 
 class NavBar extends Component {
-  state = {};
+  // state = { hidden: false };
+  // componentWillMount() {
+  //   // When this component mounts, begin listening for scroll changes
+  //   window.addEventListener("scroll", this.handleScroll);
+  // }
+  // componentWillUnmount() {
+  //   // If this component is unmounted, stop listening
+  //   window.removeEventListener("scroll", this.handleScroll);
+  // }
+
+  // handleScroll(e) {
+  //   let lastScrollTop = 0;
+  //   const currentScrollTop = Navbar.scrollTop;
+
+  //   // Set the state of hidden depending on scroll position
+  //   // We only change the state if it needs to be changed
+  //   if (this.state.hidden && currentScrollTop > lastScrollTop) {
+  //     this.setState({ hidden: true });
+  //   } else if (this.state.hidden) {
+  //     this.setState({ hidden: false });
+  //   }
+  //   lastScrollTop = currentScrollTop;
+  // }
+
   render() {
     return (
       <Navbar id="navbar-wrapper" expand="lg">

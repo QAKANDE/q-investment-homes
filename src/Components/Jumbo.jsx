@@ -10,10 +10,14 @@ class Jumbo extends Component {
   render() {
     return (
       <Jumbotron className="jumbo">
-        <h1>Start Small And Become A Digital Investor</h1>
-        <h3>10% - 17% Holiday Rental Income</h3>
-        <h3>30% - 40% Spa And Resort Income</h3>
-        <Button>Get Started</Button>
+        <h1 id="jumbo-header">Start Small And Become A Digital Investor</h1>
+        <div>
+          <h3 className="jumbo-sub-heading">10% - 17% Holiday Rental Income</h3>
+          <h3 className="jumbo-sub-heading mt-2">
+            30% - 40% Spa And Resort Income
+          </h3>
+        </div>
+        <Button id="jumbo-btn">Get Started</Button>
       </Jumbotron>
     );
   }

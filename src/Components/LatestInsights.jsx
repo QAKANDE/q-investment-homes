@@ -8,8 +8,10 @@ class LatestInsights extends Component {
   state = {};
   render() {
     return (
-      <Container>
-        <h3 className="d-flex justify-content-center">Latest Insights</h3>
+      <Container className="mb-5">
+        <h3 className="d-flex justify-content-center mt-5 mb-5">
+          Latest Insights
+        </h3>
         <CardDeck>
           <Card>
             <Card.Img variant="top" src={resort1} />
@@ -19,8 +21,8 @@ class LatestInsights extends Component {
                   className="blog-link"
                   href="https://www.jll.co.uk/en/trends-and-insights/investor/private-investors-ramp-up-real-estate-strategies-amid-covid19-uncertainty"
                 >
-                  Private Investors Ramp Up<br></br> Real Estate Strategies Amid
-                  COVID-19 Uncertainty
+                  f Private Investors Ramp Up<br></br> Real Estate Strategies
+                  Amid COVID-19 Uncertainty
                 </a>
               </Card.Title>
               <Card.Text>

@@ -15,26 +15,26 @@ class CalculateROI extends Component {
     netProfit: null,
     ROI: null,
   };
-  //   componentDidMount = async () => {
-  //     const propertyId = this.props.match.params.id;
-  //     const res = await fetch(
-  //       `https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${propertyId}`,
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "x-rapidapi-host": "realtor.p.rapidapi.com",
-  //           "x-rapidapi-key":
-  //             "b41254000bmshb62e314b3254f24p1dac92jsn6f1fc3174939",
-  //         },
-  //       }
-  //     );
-  //     const data = await res.json();
-  //     console.log(data);
-  //     this.setState({
-  //       details: data.properties[0],
-  //     });
-  //     console.log(this.state.details);
-  //   };
+  // componentDidMount = async () => {
+  //   const propertyId = this.props.match.params.id;
+  //   const res = await fetch(
+  //     `https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${propertyId}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-host": "realtor.p.rapidapi.com",
+  //         "x-rapidapi-key":
+  //           "b41254000bmshb62e314b3254f24p1dac92jsn6f1fc3174939",
+  //       },
+  //     }
+  //   );
+  //   const data = await res.json();
+  //   console.log(data);
+  //   this.setState({
+  //     details: data.properties,
+  //   });
+  //   console.log(this.state.details);
+  // };
 
   updateInvestmentValue = (event) => {
     this.setState({
@@ -71,10 +71,6 @@ class CalculateROI extends Component {
       <Container>
         <div className="d-flex justify-content-center mt-2">
           <h3>Calculate ROI ( Return On Investment )</h3>
-        </div>
-        <img src={this.state.details.thumbnail}></img>
-        <div className="d-flex justify-content-center mt-2">
-          <h3>{this.state.details.description}</h3>
         </div>
 
         <div className="mt-3">

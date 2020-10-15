@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
+import "./index.css";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
 import ForgottenPassword from "./Components/ForgottenPassword";

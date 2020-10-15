@@ -3,6 +3,29 @@
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+  border-radius: 0%;
   /* position: relative;
   padding: 26.25% 0 0 !important; */
+}
+#jumbo-header {
+  font-size: 70px;
+  line-height: 1;
+  color: #f1f1f1;
+  margin-top: 2rem;
+}
+.jumbo-sub-heading {
+  font-size: 30px;
+  font-weight: 400;
+  background-color: #f8a074;
+  display: inline-block;
+  margin-right: 9rem;
+  margin-top: 2rem;
+  padding: 0 0.5rem;
+  color: #f1f1f1;
+}
+#jumbo-btn {
+  margin-top: 2rem;
+  padding: 0.8rem 2.6rem;
+  font-size: 1.6rem;
+  height: 70px;
 }

@@ -11,55 +11,52 @@ class Login extends Component {
   };
 
   updateLogin = (event) => {
-    let newLoginDetails = this.state.loginDetails;
+    let loginDetails = this.state.loginDetails;
     let id = event.currentTarget.id;
-    newLoginDetails[id] = event.currentTarget.value;
+    loginDetails[id] = event.currentTarget.value;
     this.setState({
-      newLoginDetails,
+      loginDetails,
     });
   };
+
   loginHandler = async (e) => {
     e.preventDefault();
-    let userInfo = {
-      email: this.state.loginDetails.email,
-      password: this.state.loginDetails.password,
-    };
+    console.log(e);
+
     let response = await fetch("http://localhost:3002/users/login", {
       method: "POST",
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(this.state.loginDetails),
       headers: new Headers({
-        "content-Type": "application/json",
+        "Content-Type": "application/json",
       }),
     });
 
-    const generatedToken = await response.json();
-    console.log(generatedToken);
-    // // localStorage["accessToken"] = token.token;
-    // // localStorage["email"] = this.state.loginDetails.email;
-    // // if (localStorage.accessToken) {
-    // //   const authorize = await fetch("http://localhost:3002/users/me", {
-    // //     headers: {
-    // //       Authorization: "Bearer " + localStorage.accessToken,
-    // //     },
-    // //   });
-    // //   if (authorize.ok) {
-    // //     window.location.href = "http://localhost:3001/";
-    // //   } else {
-    // //     alert("Please Log in");
-    // //   }
-    // // }
-    // console.log(token);
+    // const generatedToken = await response.json();
+    // console.log("Quadri");
+    // console.log("TOKEN:", generatedToken);
+    // localStorage["accessToken"] = generatedToken.token;
+    // localStorage["email"] = this.state.loginDetails.email;
+    // if (localStorage.accessToken) {
+    //   const authorize = await fetch("http://localhost:3002/users/me", {
+    //     headers: {
+    //       Authorization: "Bearer " + localStorage.accessToken,
+    //     },
+    //   });
+    //   if (authorize.ok) {
+    //     window.location.href = "http://localhost:3001/";
+    //   } else {
+    //     alert("Please Log in");
+    //   }
+    // }
   };
   render() {
     return (
       <div id="Log-In" className="mt-5">
-        <h3 className="d-flex justify-content-center">Log In</h3>
-        <h3 className="d-flex justify-content-center">
-          Sign Into An Existing Account
-        </h3>
+        <h3 className="text-center mt-5">Log In</h3>
+        <h3 className="text-center mt-4">Sign Into An Existing Account</h3>
         <Container>
-          <Form>
-            <Form.Group style={{ marginTop: "0" }}>
+          <Form className="mt-5">
+            <Form.Group style={{ marginTop: "1rem" }}>
               <Form.Control
                 htmlFor="email"
                 className="mb-3"
@@ -84,7 +81,7 @@ class Login extends Component {
               <Form.Check type="checkbox" label="Remember Me" />
             </Form.Group>
           </Form>
-          <div className="d-flex justify-content-center">
+          <div className="text-center mt-3">
             <button
               id="Login"
               type="submit"
@@ -94,12 +91,12 @@ class Login extends Component {
               Log In
             </button>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="text-center mt-3">
             <Link to={"/PasswordRecovery"}>
               <a>Forgotten Password ? </a>
             </Link>
           </div>
-          <div className="d-flex justify-content-center mb-5">
+          <div className="text-center mt-3 mb-5">
             <Link to={"/SignUp"}>
               <a>Don't Have An Account ? Sign Up Here</a>
             </Link>

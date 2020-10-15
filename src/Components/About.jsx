@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
+import users from "../Assets/users.png";
+import home from "../Assets/home.png";
+import "./css/About.css";
 
 class About extends Component {
   state = {};
@@ -9,10 +12,10 @@ class About extends Component {
       <>
         <Container>
           <div id="about" className="mt-4">
-            <h3 className="d-flex justify-content-center">
+            <h3 className="text-center" id="about-header">
               About Archi-Kraft Consults
             </h3>
-            <h5 className="d-flex justify-content-center">
+            <h5 className="text-center">
               Archi-Kraft Consults Your Number One Source For All Real Estate
               Investment.
             </h5>
@@ -22,16 +25,22 @@ class About extends Component {
               dependability, customer service and uniqueness.
             </p>
           </div>
-          <Row className="d-flex justify-content-center">
+          <Row className="text-center">
             <Col>
               <div className="d-flex flex-column">
-                <i class="fa fa-users fa-5x"></i>
+                {/* <i class="fa fa-users fa-5x"></i> */}
+                <div>
+                  <img src={users}></img>
+                </div>
                 <p>200+ Investors</p>
               </div>
             </Col>
             <Col>
               <div className="d-flex flex-column">
-                <i class="fa fa-home fa-5x"></i>
+                {/* <i class="fa fa-home fa-5x"></i> */}
+                <div>
+                  <img src={home}></img>
+                </div>
                 <p>100+ Properties</p>
               </div>
             </Col>
