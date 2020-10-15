@@ -196,17 +196,18 @@ class PropertyListings extends Component {
                 return (
                   <Card key={i} id="property-card">
                     <Card.Img
-                      // className="rounded-circle z-depth-2"
                       variant="top"
                       src={property.thumbnail}
                       alt="Property Image"
                     />
                     <Card.Body id="cardBody">
                       <Card.Title>
-                        <p>
-                          {property.address.line} , {property.address.county}
-                        </p>
-                        <p>{property.address.city}</p>
+                        <div>
+                          <p>
+                            {property.address.line} , {property.address.county}
+                          </p>
+                          <p>{property.address.city}</p>
+                        </div>
                         <Badge className="property-listing-badge">
                           {property.prop_status}
                         </Badge>
@@ -237,6 +238,7 @@ class PropertyListings extends Component {
                       {/* <Link to={"/Details/" + property.property_id}> */}
                       <div className="d-flex justify-content-between">
                         <button
+                          id="propertyListingsDetailsButton"
                           className="mt-3 mb-3"
                           onClick={() => this.openModal(property.property_id)}
                         >
@@ -246,7 +248,7 @@ class PropertyListings extends Component {
                           onClick={() =>
                             this.openROIModal(property.property_id)
                           }
-                          className="mx-4"
+                          id="propertyListingsROIButton"
                         >
                           Calculate ROI
                         </button>

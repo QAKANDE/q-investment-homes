@@ -13,7 +13,7 @@
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px #6a2539, 0 4px 8px #6a2539;
+  box-shadow: 0 6px 20px -2px rgb(0, 0, 0, 0.4);
 }
 
 .card-footer {
@@ -23,8 +23,23 @@
   background-color: #6a2539;
   color: #f8a074;
 }
-/* .w-100 {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-} */
+.card-title > div > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#propertyListingsDetailsButton {
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+}
+#propertyListingsROIButton {
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: bolder;
+}
