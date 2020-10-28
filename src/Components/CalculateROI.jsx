@@ -3,7 +3,9 @@ import { Container, Form, FormGroup, Button } from "react-bootstrap";
 
 class CalculateROI extends Component {
   state = {
-    details: {},
+    price: "",
+    address: {},
+
     propertyName: "",
     propertyPrice: "",
     investmentValue: "",
@@ -15,26 +17,33 @@ class CalculateROI extends Component {
     netProfit: null,
     ROI: null,
   };
-  // componentDidMount = async () => {
-  //   const propertyId = this.props.match.params.id;
-  //   const res = await fetch(
-  //     `https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${propertyId}`,
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "x-rapidapi-host": "realtor.p.rapidapi.com",
-  //         "x-rapidapi-key":
-  //           "b41254000bmshb62e314b3254f24p1dac92jsn6f1fc3174939",
-  //       },
-  //     }
-  //   );
-  //   const data = await res.json();
-  //   console.log(data);
-  //   this.setState({
-  //     details: data.properties,
-  //   });
-  //   console.log(this.state.details);
-  // };
+  componentDidMount = async () => {
+    const propertyId = this.props.match.params.id;
+    const res = await fetch(
+      `https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${propertyId}`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "realtor.p.rapidapi.com",
+          "x-rapidapi-key":
+            "99f1701846mshccb023096a35442p152124jsne97c1895a6fe",
+        },
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    this.setState({
+      details: data.properties,
+    });
+
+    this.state.details.map((detail) => {
+      return this.setState({
+        price: detail.price,
+        address: detail.address,
+      });
+    });
+    console.log(this.state.details);
+  };
 
   updateInvestmentValue = (event) => {
     this.setState({
@@ -43,29 +52,78 @@ class CalculateROI extends Component {
   };
 
   calculateROI = (e) => {
-    e.preventDefault();
-    const convertValue = parseInt(this.state.investmentValue);
-    const newExpectedInvestmentIncome = 5000 * 52;
-    const newExpectedExpenses = 9000;
-    const newExcessCash = newExpectedInvestmentIncome - newExpectedExpenses;
-    const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
-    const newCapitalGainsGrowth = convertValue * 0.05;
-    const newNetProfit = newCapitalGainsGrowth + newExcessCash;
-    const newROI = Math.round((newNetProfit / convertValue) * 100);
+    e.preventDefault()
+    const convertValue = parseInt(this.state.investmentValue)
+    const expectedIncome = 10000;
+    const cost = this.state.price
+   const  percentageOfInvestor = cost / convertValue * 100
+     const netProfit = expectedIncome - cost 
 
-    this.setState({
-      expectedInvestmentIncome: newExpectedInvestmentIncome,
-      expectedExpenses: newExpectedExpenses,
-      excessCash: newExcessCash,
-      cashOnCashReturns: newCashOnCashReturns,
-      capitalGainsGrowth: newCapitalGainsGrowth,
-      netProfit: newNetProfit,
-      ROI: newROI,
-      investmentValue: "",
-    });
-    console.log(newROI);
-    console.log(this.state.ROI);
-  };
+  }
+
+  // calculateROI = (e) => {
+  //   e.preventDefault();
+  //   const convertValue = parseInt(this.state.investmentValue);
+  //   const newExpectedInvestmentIncome = 1000 * 52;
+  //   const newExpectedExpenses = 500;
+  //   const newExcessCash = newExpectedInvestmentIncome - newExpectedExpenses;
+  //   const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
+  //   const newCapitalGainsGrowth = convertValue * 0.05;
+  //   const newNetProfit =
+  //     newCapitalGainsGrowth + newExcessCash / this.state.propertyPrice;
+  //   const grossYield = newExpectedInvestmentIncome / this.state.propertyPrice;
+  //   const newROI = Math.round(convertValue - newNetProfit * 0.01);
+  //   // const newExpectedInvestmentIncome = 1000 * 52;
+  //   // const newExpectedExpenses = 500;
+  //   // const investCost = convertValue + newExpectedExpenses;
+  //   // const grossYield = newExpectedInvestmentIncome / this.state.propertyPrice;
+  //   // const newROI = (newExpectedInvestmentIncome - investCost) / investCost;
+
+  //   // // const ROIToPercent = Math.round(newROI / 100);
+  //   // const ROIToPercent = 10000;
+
+  //   // this.setState({
+  //   //   expectedInvestmentIncome: newExpectedInvestmentIncome,
+  //   //   expectedExpenses: newExpectedExpenses,
+  //   //   // excessCash: newExcessCash,
+  //   //   // cashOnCashReturns: newCashOnCashReturns,
+  //   //   // capitalGainsGrowth: newCapitalGainsGrowth,
+  //   //   // netProfit: newNetProfit,
+  //   //   grossYield,
+  //   //   ROI: newROI,
+  //   //   investmentValueToDisplay: convertValue,
+  //   //   investmentValue: "",
+  //   // });
+
+  //   console.log(this.state.ROI);
+  //   console.log(newROI);
+  // };
+
+  // calculateROI = (e) => {
+  //   e.preventDefault();
+  //   const convertValue = parseInt(this.state.investmentValue);
+  //   const newExpectedInvestmentIncome = 5000 * 52;
+  //   const newExpectedExpenses = 9000;
+  //   const newExcessCash = newExpectedInvestmentIncome - newExpectedExpenses;
+  //   const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
+  //   const newCapitalGainsGrowth = convertValue * 0.05;
+  //   const newNetProfit = newCapitalGainsGrowth + newExcessCash;
+
+  //   const newROI = Math.round((newNetProfit / convertValue) * 100);
+
+  //   this.setState({
+  //     expectedInvestmentIncome: newExpectedInvestmentIncome,
+  //     expectedExpenses: newExpectedExpenses,
+  //     excessCash: newExcessCash,
+  //     cashOnCashReturns: newCashOnCashReturns,
+  //     capitalGainsGrowth: newCapitalGainsGrowth,
+  //     netProfit: newNetProfit,
+  //     ROI: newROI,
+  //     investmentValue: "",
+  //   });
+  //   console.log(newROI);
+  //   console.log(this.state.ROI);
+  // };
   render() {
     return (
       <Container>
@@ -93,10 +151,20 @@ class CalculateROI extends Component {
           </Form>
         </div>
         <div>
+          <div>
+            <p>
+              {this.state.address.line} , {this.state.address.county} ,{" "}
+              {this.state.address.city}
+            </p>
+          </div>
           <div className="d-flex justify-content-between mt-4">
             <h5>Property Value</h5>
-            <h4>£ Value In Pounds Placeholder </h4>
+            <h4>£ {this.state.price}</h4>
           </div>{" "}
+          <div className="d-flex justify-content-between mt-4">
+            <h5>Minimum Investment</h5>
+            <h4>£ {Math.round(this.state.price / 5)}</h4>
+          </div>
           <hr></hr>
           <div className="d-flex justify-content-between mt-4">
             <h5>Expected Investment Income Per Year</h5>

@@ -56,7 +56,7 @@ class PropertyListings extends Component {
         headers: {
           "x-rapidapi-host": "realtor.p.rapidapi.com",
           "x-rapidapi-key":
-            "1cebc59b22mshcf0f5b3f9cc23d6p1684afjsn9ae8ff134827",
+            "99f1701846mshccb023096a35442p152124jsne97c1895a6fe",
         },
       }
     );
@@ -88,7 +88,7 @@ class PropertyListings extends Component {
         headers: {
           "x-rapidapi-host": "realtor.p.rapidapi.com",
           "x-rapidapi-key":
-            "1cebc59b22mshcf0f5b3f9cc23d6p1684afjsn9ae8ff134827",
+            "99f1701846mshccb023096a35442p152124jsne97c1895a6fe",
         },
       }
     );
@@ -109,40 +109,40 @@ class PropertyListings extends Component {
   };
 
   calculateROI = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    const convertValue = parseInt(this.state.investmentValue);
-    // const newExpectedInvestmentIncome = 5000 * 52;
-    // const newExpectedExpenses = 9000;
-    // const newExcessCash = newExpectedInvestmentIncome - newExpectedExpenses;
-    // const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
-    // const newCapitalGainsGrowth = convertValue * 0.05;
-    // const newNetProfit =
-    //   newCapitalGainsGrowth + newExcessCash / this.state.propertyPrice;
+    // const convertValue = parseInt(this.state.investmentValue);
+    // // const newExpectedInvestmentIncome = 5000 * 52;
+    // // const newExpectedExpenses = 9000;
+    // // const newExcessCash = newExpectedInvestmentIncome - newExpectedExpenses;
+    // // const newCashOnCashReturns = (newExcessCash / convertValue) * 100;
+    // // const newCapitalGainsGrowth = convertValue * 0.05;
+    // // const newNetProfit =
+    // //   newCapitalGainsGrowth + newExcessCash / this.state.propertyPrice;
+    // // const grossYield = newExpectedInvestmentIncome / this.state.propertyPrice;
+    // // const newROI = Math.round(convertValue - newNetProfit * 100);
+    // const newExpectedInvestmentIncome = 1000 * 52;
+    // const newExpectedExpenses = 1000;
+    // const investCost = convertValue + newExpectedExpenses;
     // const grossYield = newExpectedInvestmentIncome / this.state.propertyPrice;
-    // const newROI = Math.round(convertValue - newNetProfit * 100);
-    const newExpectedInvestmentIncome = 1000 * 52;
-    const newExpectedExpenses = 1000;
-    const investCost = convertValue + newExpectedExpenses;
-    const grossYield = newExpectedInvestmentIncome / this.state.propertyPrice;
-    const newROI = newExpectedInvestmentIncome - investCost / investCost;
+    // const newROI = (newExpectedInvestmentIncome - investCost) / investCost;
 
-    const ROIToPercent = Math.round(newROI / 100);
+    // const ROIToPercent = Math.round(newROI / 100);
 
-    this.setState({
-      expectedInvestmentIncome: newExpectedInvestmentIncome,
-      expectedExpenses: newExpectedExpenses,
-      // excessCash: newExcessCash,
-      // cashOnCashReturns: newCashOnCashReturns,
-      // capitalGainsGrowth: newCapitalGainsGrowth,
-      // netProfit: newNetProfit,
-      grossYield,
-      ROI: ROIToPercent,
-      investmentValueToDisplay: convertValue,
-      investmentValue: "",
-    });
+    // this.setState({
+    //   expectedInvestmentIncome: newExpectedInvestmentIncome,
+    //   expectedExpenses: newExpectedExpenses,
+    //   // excessCash: newExcessCash,
+    //   // cashOnCashReturns: newCashOnCashReturns,
+    //   // capitalGainsGrowth: newCapitalGainsGrowth,
+    //   // netProfit: newNetProfit,
+    //   grossYield,
+    //   ROI: ROIToPercent,
+    //   investmentValueToDisplay: convertValue,
+    //   investmentValue: "",
+    // });
 
-    console.log("happened", ROIToPercent, this.state.ROI);
+    console.log("happened");
   };
   capitalize = (str) => {
     const capital = str.charAt(0).toUpperCase() + str.slice(1);
@@ -169,7 +169,7 @@ class PropertyListings extends Component {
         headers: {
           "x-rapidapi-host": "realtor.p.rapidapi.com",
           "x-rapidapi-key":
-            "1cebc59b22mshcf0f5b3f9cc23d6p1684afjsn9ae8ff134827",
+            "99f1701846mshccb023096a35442p152124jsne97c1895a6fe",
         },
       }
     );
@@ -229,7 +229,7 @@ class PropertyListings extends Component {
                         <h4>£{property.price}</h4>
                         <hr></hr>
                         <h5>Minimum Investment</h5>
-                        <h4>£{Math.round(property.price / 4)}</h4>
+                        <h4>£{Math.round(property.price / 5)}</h4>
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -242,14 +242,16 @@ class PropertyListings extends Component {
                         >
                           More Details
                         </button>
-                        <button
-                          onClick={() =>
-                            this.openROIModal(property.property_id)
-                          }
-                          id="propertyListingsROIButton"
-                        >
-                          Calculate ROI
-                        </button>
+                        <Link to={"/CalculateROI/" + property.property_id}>
+                          <button
+                            // onClick={() =>
+                            //   this.openROIModal(property.property_id)
+                            // }
+                            id="propertyListingsROIButton"
+                          >
+                            Calculate ROI
+                          </button>
+                        </Link>
                       </div>
                       {/* <Modal
                         dialogClassName="modal-90w"
@@ -500,16 +502,14 @@ class PropertyListings extends Component {
             >
               X
             </div>
-            <button onClick={() => console.log("here")}>
-              Calculate ROI ( Return On Investment )
-            </button>
+
             <Container>
               <div className="d-flex justify-content-center mt-1">
                 <h3>Calculate ROI ( Return On Investment )</h3>
               </div>
 
               <div className="mt-1">
-                <Form>
+                <Form onSubmit={(e) => this.calculateROI(e)}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Investment Value</Form.Label>
                     <Form.Control
@@ -522,13 +522,16 @@ class PropertyListings extends Component {
                       Minimum Investment - £2,000,000
                     </Form.Text>
                   </Form.Group>
+                  <button type="submit">
+                    Calculate ROI ( Return On Investment )
+                  </button>
                 </Form>
               </div>
               <div>
                 <div className="d-flex justify-content-between mt-4">
                   <h5>Property Value</h5>
                   <h4>£ Value In Pounds Placeholder </h4>
-                </div>{" "}
+                </div>
                 <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
                   <h5>Expected Investment Income Per Year</h5>
