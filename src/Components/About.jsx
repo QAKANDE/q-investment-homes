@@ -11,7 +11,7 @@ class About extends Component {
     return (
       <>
         <Container>
-          <div id="about" className="mt-4">
+          <div id="about">
             <h3 className="text-center" id="about-header">
               About Archi-Kraft Consults
             </h3>
@@ -25,7 +25,7 @@ class About extends Component {
               dependability, customer service and uniqueness.
             </p>
           </div>
-          <Row className="text-center">
+          <Row className="text-center" id="icon-row">
             <Col>
               <div className="d-flex flex-column">
                 {/* <i class="fa fa-users fa-5x"></i> */}

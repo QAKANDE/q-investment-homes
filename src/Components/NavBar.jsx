@@ -1,34 +1,34 @@
 import React, { Component } from "react";
 import { Nav, NavDropdown, Navbar, Button } from "react-bootstrap";
 import "./css/NavBar.css";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import archikraftconsults from "../Assets/archi-kraft-consults.png";
 
 class NavBar extends Component {
-  // state = { hidden: false };
-  // componentWillMount() {
-  //   // When this component mounts, begin listening for scroll changes
-  //   window.addEventListener("scroll", this.handleScroll);
-  // }
-  // componentWillUnmount() {
-  //   // If this component is unmounted, stop listening
-  //   window.removeEventListener("scroll", this.handleScroll);
-  // }
+  state = {
+    userDetails: [],
+  };
+  componentDidMount = async (props) => {
+    const id = this.props.match.params.id;
+    if (id) {
+      console.log("first one");
+    } else {
+      console.log("second one");
+    }
+    // const res = await fetch(`http://localhost:3003/users/${id}`, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "Application/json",
+    //   },
+    // });
 
-  // handleScroll(e) {
-  //   let lastScrollTop = 0;
-  //   const currentScrollTop = Navbar.scrollTop;
-
-  //   // Set the state of hidden depending on scroll position
-  //   // We only change the state if it needs to be changed
-  //   if (this.state.hidden && currentScrollTop > lastScrollTop) {
-  //     this.setState({ hidden: true });
-  //   } else if (this.state.hidden) {
-  //     this.setState({ hidden: false });
-  //   }
-  //   lastScrollTop = currentScrollTop;
-  // }
-
+    // const userDetails = await res.json();
+    // this.setState({
+    //   userDetails,
+    // });
+    // console.log(this.state.userDetails);
+  };
   render() {
     return (
       <Navbar id="navbar-wrapper" expand="lg">
@@ -77,4 +77,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

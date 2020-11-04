@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Col, Row, Button, Container } from "react-bootstrap";
 // import { Formik, ErrorMessage } from "formik";
+import axios from "axios";
 import { Link } from "react-router-dom";
 // import * as Yup from "yup";
 
@@ -46,12 +47,11 @@ class SignUp extends Component {
     this.setState({
       details,
     });
-    console.log("bla bla", this.state);
   };
 
   submitDetails = async (event) => {
     event.preventDefault();
-    let response = await fetch("http://localhost:3002/users/register", {
+    let response = await fetch("http://localhost:3003/users/register", {
       method: "POST",
       body: JSON.stringify(this.state.details),
       headers: {
@@ -59,8 +59,8 @@ class SignUp extends Component {
       },
     });
     if (response.ok) {
-      let details = await response.json();
-      console.log(details);
+      let detailsFromApi = await response.json();
+
       alert("success");
       this.setState({
         details: {
@@ -73,9 +73,9 @@ class SignUp extends Component {
           password: "",
         },
       });
-      window.location.href = "http://localhost:3001/";
+      window.location.href = `http://localhost:3000/user/${detailsFromApi}`;
     } else {
-      alert("err");
+      console.log("err");
     }
   };
   render() {

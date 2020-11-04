@@ -234,7 +234,7 @@ class PropertyListings extends Component {
                     </Card.Body>
                     <Card.Footer>
                       {/* <Link to={"/Details/" + property.property_id}> */}
-                      <div className="d-flex justify-content-between">
+                      <div className="d-flex justify-content-between align-items-center">
                         <button
                           id="propertyListingsDetailsButton"
                           className="mt-3 mb-3"

@@ -22,7 +22,7 @@ import DetailsModal from "./Components/DetailsModal";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <NavBar />
+      <NavBar  />
       <Route path="/SignUp" exact component={SignUp} />
       <Route path="/Login" exact component={Login} />
       <Route path="/PasswordRecovery" exact component={ForgottenPassword} />
@@ -33,6 +33,7 @@ ReactDOM.render(
       <Route path="/ContactUs" exact component={ContactUs} />
       <Route path="/Details/:id" exact component={Details} />
       <Route path="/Detailss/:id" exact component={DetailsModal} />
+      <Route path="/user/:id" exact component={App}></Route>
       <Route path="/" exact component={App}></Route>
       <Footer />
     </Router>

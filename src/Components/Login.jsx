@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./css/Login.css";
 class Login extends Component {
   state = {
@@ -18,44 +19,86 @@ class Login extends Component {
       loginDetails,
     });
   };
-
   loginHandler = async (e) => {
     e.preventDefault();
-    console.log(e);
-
-    let response = await fetch("http://localhost:3002/users/login", {
+    let userInfo = {
+      email: this.state.loginDetails.email,
+      password: this.state.loginDetails.password,
+    };
+    let response = await fetch("http://localhost:3003/users/login", {
       method: "POST",
-      body: JSON.stringify(this.state.loginDetails),
+      body: JSON.stringify(userInfo),
       headers: new Headers({
-        "Content-Type": "application/json",
+        "Content-Type": "Application/json",
       }),
     });
+    if (response.ok) {
+      const tokens = await response.json();
+      console.log(tokens);
+    }
 
-    // const generatedToken = await response.json();
-    // console.log("Quadri");
-    // console.log("TOKEN:", generatedToken);
-    // localStorage["accessToken"] = generatedToken.token;
+    // const tokens = await response.json();
+    // console.log(tokens);
+    // console.log(response);
+    // const token = await response.json();
+    // console.log(token);
+    // localStorage["accessToken"] = token.token;
     // localStorage["email"] = this.state.loginDetails.email;
     // if (localStorage.accessToken) {
-    //   const authorize = await fetch("http://localhost:3002/users/me", {
-    //     headers: {
-    //       Authorization: "Bearer " + localStorage.accessToken,
-    //     },
-    //   });
+    //   const authorize = await fetch(
+    //     "http://localhost:3008/profile/authorizeUser",
+    //     {
+    //       headers: {
+    //         Authorization: "Bearer " + localStorage.accessToken,
+    //       },
+    //     }
+    //   );
     //   if (authorize.ok) {
-    //     window.location.href = "http://localhost:3001/";
-    //   } else {
-    //     alert("Please Log in");
+    //     this.props.history.push("/profile/user23");
     //   }
+    // } else {
+    //   alert("Please Log in");
     // }
   };
+  // loginHandler = async (e) => {
+  //   e.preventDefault();
+
+  //   let response = await fetch("http://localhost:3003/users/login", {
+  //     method: "POST",
+  //     body: JSON.stringify(this.state.loginDetails),
+  //     headers: {
+  //       "Content-Type": "Application/json",
+  //     },
+  //   });
+  //   if (response.ok) {
+  //     const token = await response.json();
+  //     console.log(token);
+  //   } else {
+  //     alert("Error Occured");
+  //   }
+
+  //   // localStorage["accessToken"] = generatedToken.token;
+  //   // localStorage["email"] = this.state.loginDetails.email;
+  //   // if (localStorage.accessToken) {
+  //   //   const authorize = await fetch("http://localhost:3002/users/me", {
+  //   //     headers: {
+  //   //       Authorization: "Bearer " + localStorage.accessToken,
+  //   //     },
+  //   //   });
+  //   //   if (authorize.ok) {
+  //   //     window.location.href = "http://localhost:3001/";
+  //   //   } else {
+  //   //     alert("Please Log in");
+  //   //   }
+  //   // }
+  // };
   render() {
     return (
       <div id="Log-In" className="mt-5">
         <h3 className="text-center mt-5">Log In</h3>
         <h3 className="text-center mt-4">Sign Into An Existing Account</h3>
         <Container>
-          <Form className="mt-5">
+          <Form className="mt-5" onSubmit={(e) => this.loginHandler(e)}>
             <Form.Group style={{ marginTop: "1rem" }}>
               <Form.Control
                 htmlFor="email"
@@ -80,17 +123,12 @@ class Login extends Component {
             <Form.Group id="formGridCheckbox">
               <Form.Check type="checkbox" label="Remember Me" />
             </Form.Group>
+            <div className="text-center mt-3">
+              <button id="Login" type="submit" className=" mt-3 ">
+                Log In
+              </button>
+            </div>
           </Form>
-          <div className="text-center mt-3">
-            <button
-              id="Login"
-              type="submit"
-              className=" mt-3 "
-              onClick={(e) => this.loginHandler(e)}
-            >
-              Log In
-            </button>
-          </div>
           <div className="text-center mt-3">
             <Link to={"/PasswordRecovery"}>
               <a>Forgotten Password ? </a>
