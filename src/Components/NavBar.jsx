@@ -1,34 +1,67 @@
-import React, { Component } from "react";
+import React, { Component , useEffect } from "react";
 import { Nav, NavDropdown, Navbar, Button } from "react-bootstrap";
 import "./css/NavBar.css";
-import { withRouter } from "react-router-dom";
+import { withRouter , useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import archikraftconsults from "../Assets/archi-kraft-consults.png";
 
 class NavBar extends Component {
   state = {
-    userDetails: [],
+    userFirstName: "",
+    userLastName: "",
+    accountBalance: "",
   };
-  componentDidMount = async (props) => {
-    const id = this.props.match.params.id;
-    if (id) {
-      console.log("first one");
-    } else {
-      console.log("second one");
-    }
-    // const res = await fetch(`http://localhost:3003/users/${id}`, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "Application/json",
-    //   },
-    // });
 
-    // const userDetails = await res.json();
-    // this.setState({
-    //   userDetails,
-    // });
-    // console.log(this.state.userDetails);
+ 
+
+  
+  componentDidMount = async () => {   
+      if (localStorage.userId) {
+        let response = await fetch(
+          `http://localhost:3003/users/signUp/${localStorage.userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "Application/json",
+            },
+          }
+        );
+        const userDetails = await response.json();
+        console.log(userDetails);
+  
+        this.setState({
+          userFirstName: userDetails.firstName,
+          userLastName: userDetails.lastName,
+        });
+        this.fetchAccountBalance();
+      }
+    
   };
+
+  fetchAccountBalance = async () => {
+    let accountBalanceResponse = await fetch(
+      `http://localhost:3003/account/${localStorage.userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      }
+    );
+    const balanceFromApi = await accountBalanceResponse.json();
+    this.setState({
+      accountBalance: balanceFromApi.balance,
+    });
+  };
+
+  logOut = () => {
+    localStorage.clear()
+    window.location.href = `http://localhost:3000/`;
+  //  window.location.reload()
+  }
+
+  
   render() {
     return (
       <Navbar id="navbar-wrapper" expand="lg">
@@ -67,14 +100,31 @@ class NavBar extends Component {
             <Link to={"/Login"} className="nav-link">
               Login
             </Link>
-            <Link to={"/SignUp"}>
-              <button id="sign-up-btn">Sign Up</button>
-            </Link>
+            {this.state.userFirstName === "" ? (
+              <Link to={"/SignUp"}>
+                <button id="sign-up-btn" >Sign Up</button>
+              </Link>
+            ) : (
+              <Link to={"/profile"}>
+                <div>
+                  <div>
+                    <i class="fa fa-user fa-4x mx-3"></i>
+                    <p>
+                      {this.state.userFirstName} {this.state.userLastName}
+                    </p>
+                  </div>
+                    <div>
+                      {this.state.accountBalance === "" ?  <h5> Balance :  0 </h5> :  <h5>Balance : {this.state.accountBalance}</h5>}
+                    
+                  </div>
+                </div>
+              </Link>
+              )}
+            <Nav.Link  onClick={()=> this.logOut()}>Log Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
   }
 }
-
-export default withRouter(NavBar);
+export default withRouter(NavBar)

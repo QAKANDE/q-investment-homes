@@ -60,8 +60,6 @@ class SignUp extends Component {
     });
     if (response.ok) {
       let detailsFromApi = await response.json();
-
-      alert("success");
       this.setState({
         details: {
           firstName: "",
@@ -73,18 +71,22 @@ class SignUp extends Component {
           password: "",
         },
       });
-      window.location.href = `http://localhost:3000/user/${detailsFromApi}`;
+      localStorage["userId"] = detailsFromApi
+      
+      window.location.href = `http://localhost:3000/user/${localStorage.userId}`
     } else {
-      console.log("err");
+      alert ("Oops , something went wrong")
     }
   };
+
+
   render() {
     return (
       <Container>
         <h3 className="d-flex justify-content-center mt-3">
           Create A New Account
         </h3>
-        <Form onSubmit={(e) => this.submitDetails(e)}>
+        <Form >
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label htmlFor="firstName">First Name</Form.Label>
@@ -483,7 +485,7 @@ class SignUp extends Component {
             <a>Have An Account? Log In Here</a>
           </Link>
           <div className="d-flex justify-content-center">
-            <button id="CreateAccount" type="submit" className="mb-5 mt-3 ">
+            <button id="CreateAccount" onClick={(e) => this.submitDetails(e)} className="mb-5 mt-3 ">
               Create Account
             </button>
           </div>

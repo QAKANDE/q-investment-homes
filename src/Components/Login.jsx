@@ -21,44 +21,47 @@ class Login extends Component {
   };
   loginHandler = async (e) => {
     e.preventDefault();
-    let userInfo = {
-      email: this.state.loginDetails.email,
-      password: this.state.loginDetails.password,
-    };
+   
     let response = await fetch("http://localhost:3003/users/login", {
       method: "POST",
-      body: JSON.stringify(userInfo),
-      headers: new Headers({
-        "Content-Type": "Application/json",
-      }),
+      body: JSON.stringify({
+        email: this.state.loginDetails.email, 
+        password : this.state.loginDetails.password
+      }) , 
+       headers: {
+          "Content-Type": "Application/json",
+        },
     });
     if (response.ok) {
-      const tokens = await response.json();
-      console.log(tokens);
+      const token = await response.text();
+      localStorage["accessToken"] = token ;
+    localStorage["email"] = this.state.loginDetails.email;
+    if (localStorage.accessToken) {
+      const authorize = await fetch(
+        `http://localhost:3003/users/${localStorage.email}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.accessToken,
+          },
+        }
+      );
+      if (authorize.ok) {
+        const userDetails = await authorize.json()
+        userDetails.map((id) => {
+          return localStorage["userId"] = id._id
+        })
+        // this.props.history.push(`/user/${localStorage.userId}`)
+     window.location.href = `http://localhost:3000/user/${localStorage.userId}`;
+      }
+    } else {
+      alert("Please Log in");
+    }
     }
 
-    // const tokens = await response.json();
-    // console.log(tokens);
-    // console.log(response);
-    // const token = await response.json();
-    // console.log(token);
-    // localStorage["accessToken"] = token.token;
-    // localStorage["email"] = this.state.loginDetails.email;
-    // if (localStorage.accessToken) {
-    //   const authorize = await fetch(
-    //     "http://localhost:3008/profile/authorizeUser",
-    //     {
-    //       headers: {
-    //         Authorization: "Bearer " + localStorage.accessToken,
-    //       },
-    //     }
-    //   );
-    //   if (authorize.ok) {
-    //     this.props.history.push("/profile/user23");
-    //   }
-    // } else {
-    //   alert("Please Log in");
-    // }
+    else {
+      alert("Oops , something went wrong ....")
+    }
+   
   };
   // loginHandler = async (e) => {
   //   e.preventDefault();
@@ -98,7 +101,7 @@ class Login extends Component {
         <h3 className="text-center mt-5">Log In</h3>
         <h3 className="text-center mt-4">Sign Into An Existing Account</h3>
         <Container>
-          <Form className="mt-5" onSubmit={(e) => this.loginHandler(e)}>
+          <Form className="mt-5" >
             <Form.Group style={{ marginTop: "1rem" }}>
               <Form.Control
                 htmlFor="email"
@@ -124,7 +127,7 @@ class Login extends Component {
               <Form.Check type="checkbox" label="Remember Me" />
             </Form.Group>
             <div className="text-center mt-3">
-              <button id="Login" type="submit" className=" mt-3 ">
+              <button id="Login" type="submit" className=" mt-3" onClick={(e) => this.loginHandler(e)}>
                 Log In
               </button>
             </div>

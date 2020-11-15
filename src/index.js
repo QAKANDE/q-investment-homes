@@ -18,6 +18,7 @@ import TheCompany from "./Components/TheCompany";
 import ContactUs from "./Components/ContactUs";
 import Details from "./Components/Details";
 import DetailsModal from "./Components/DetailsModal";
+import ProfilePage from "./Components/ProfilePage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -35,6 +36,7 @@ ReactDOM.render(
       <Route path="/Detailss/:id" exact component={DetailsModal} />
       <Route path="/user/:id" exact component={App}></Route>
       <Route path="/" exact component={App}></Route>
+      <Route path="/profile" exact component={ProfilePage}></Route>
       <Footer />
     </Router>
   </React.StrictMode>,
