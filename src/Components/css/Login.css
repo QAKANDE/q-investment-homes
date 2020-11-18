@@ -1,3 +1,48 @@
 #Log-In {
   min-height: 85vh;
 }
+#login-form {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+#login {
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: 2rem;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.swal-modal {
+  background-color: #6a2539;
+}
+
+/* .swal-text {
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #f8a074;
+  font-size: 1.5rem;
+} */
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #f8a074;
+  font-size: 12px;
+  border: 3px solid #32021e;
+}
+
+.swal-text {
+  background-color: #fefae3;
+  padding: 17px;
+  border: 1px solid #f0e1a1;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: black;
+  font-size: 2rem;
+}

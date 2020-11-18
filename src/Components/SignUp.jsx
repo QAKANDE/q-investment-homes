@@ -1,33 +1,10 @@
 import React, { Component } from "react";
 import { Form, Col, Row, Button, Container } from "react-bootstrap";
-// import { Formik, ErrorMessage } from "formik";
+import swal from '@sweetalert/with-react'
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import * as Yup from "yup";
+import "../Components/css/Signup.css"
 
-// const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
-
-// const validationSchema = Yup.object().shape({
-//   firstName: Yup.string()
-//     .min(2, "*Names must have at least 2 characters")
-//     .max(100, "*Names can't be longer than 100 characters")
-//     .required("*Name is required"),
-//   lastName: Yup.string()
-//     .min(2, "*Last Name must have at least 2 characters")
-//     .max(100, "*Last Name can't be longer than 100 characters")
-//     .required("*Last Name is required"),
-//   email: Yup.string()
-//     .email("*Must be a valid email address")
-//     .max(100, "*Email must be less than 100 characters")
-//     .required("*Email is required"),
-//   phoneNumber: Yup.string()
-//     .matches(phoneRegExp, "*Phone number is not valid")
-//     .required("*Phone number required"),
-//   password: Yup.string()
-//     .min(6, "*Password must have at least 6 characters")
-//     .required("*Passowrd required"),
-//   confirmPassword: Yup.string().required("*Phone number required"),
-// });
 class SignUp extends Component {
   state = {
     details: {
@@ -72,21 +49,38 @@ class SignUp extends Component {
         },
       });
       localStorage["userId"] = detailsFromApi
-      
-      window.location.href = `http://localhost:3000/user/${localStorage.userId}`
+         let accountBalanceResponse = await fetch(
+      `http://localhost:3003/account/${localStorage.userId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          balance : 0
+        }) , 
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      }
+      );
+               swal("Sweet ! ! !", "Your Account Has Been Created", {  
+            }).then((ok) => {
+              if (ok) {
+                window.location.href = `http://localhost:3000/user/${localStorage.userId}`; 
+   }
+ });
     } else {
-      alert ("Oops , something went wrong")
+    swal("Ooopsss....", "Something Went Wrong , Please Sign Up Again", {
+            })
     }
   };
 
 
   render() {
     return (
-      <Container>
-        <h3 className="d-flex justify-content-center mt-3">
+      <Container id="signup-wrapper">
+        <h3 className="d-flex justify-content-center mt-3 " id="signup-header">
           Create A New Account
         </h3>
-        <Form >
+        <Form id="signUp-form">
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label htmlFor="firstName">First Name</Form.Label>
@@ -440,36 +434,6 @@ class SignUp extends Component {
               />
             </Form.Group>
           </Form.Row>
-
-          {/* <h5>Investing As An Individual Or Business ? </h5>
-              <fieldset>
-                <Form.Group>
-                  <Col sm={10}>
-                    <Form.Check
-                      type="radio"
-                      label="Individual"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios1"
-                    />
-                    <Form.Check
-                      type="radio"
-                      label="Business"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
-                    />
-                  </Col>
-                </Form.Group>
-              </fieldset> */}
-          {/* <h5>How Do You Want Us To Communicate With You ? </h5>
-              <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Email" />
-              </Form.Group>
-              <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="SMS" />
-              </Form.Group>
-              <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Phone Call" />
-              </Form.Group> */}
           <div className="d-flex justify-content-center">
             <h5>Terms & Policy Agreement</h5>
           </div>
@@ -485,7 +449,7 @@ class SignUp extends Component {
             <a>Have An Account? Log In Here</a>
           </Link>
           <div className="d-flex justify-content-center">
-            <button id="CreateAccount" onClick={(e) => this.submitDetails(e)} className="mb-5 mt-3 ">
+            <button id="createAccount" onClick={(e) => this.submitDetails(e)} className="mb-5 mt-3 ">
               Create Account
             </button>
           </div>

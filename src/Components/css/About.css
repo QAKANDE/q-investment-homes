@@ -3,10 +3,15 @@
 }
 
 #about {
-  padding-top: 6rem;
+  margin-top: 5rem;
 }
 .about-img {
   color: black !important;
+  width: 20px;
+}
+.user-img {
+  width: 120px;
+  margin-bottom: 1rem;
 }
 #icon-row {
   padding-top: 3rem;

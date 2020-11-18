@@ -2,17 +2,25 @@
   background-color: #f8a074;
   color: #32021e;
 }
+.footerWrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 .footer-anchor {
   text-decoration: none;
   color: #32021e;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .footer-anchor:hover {
   text-decoration: none;
   color: #32021e;
   border-bottom: 3px solid #6a2539;
-  border-right: 3px solid #6a2539;
-  border-left: 3px solid #6a2539;
-  border-top: 3px solid #6a2539;
+}
+a > .footer-anchor:hover {
+  text-decoration: none;
+  color: #32021e;
+  border-bottom: 3px solid #6a2539;
 }
 .Footer-header {
   font-weight: bolder;

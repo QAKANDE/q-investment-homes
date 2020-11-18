@@ -10,7 +10,7 @@ class Jumbo extends Component {
   render() {
     return (
       <Jumbotron className="jumbo rounded-0">
-        <h1 id="jumbo-header">Start Small And Become A Digital Investor</h1>
+        <h1 id="jumbo-header">Start Small And Become <br/> A Digital Investor</h1>
         <div>
           <h3 className="jumbo-sub-heading">10% - 17% Holiday Rental Income</h3>
           <h3 className="jumbo-sub-heading mt-2">

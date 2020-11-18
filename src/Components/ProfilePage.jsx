@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, Container } from "react-bootstrap";
+import swal from '@sweetalert/with-react'
+import "../Components/css/profilePage.css"
 class ProfilePage extends Component {
   state = {
     accountBalance: "",
@@ -16,26 +18,41 @@ class ProfilePage extends Component {
     const convertPaymentToInteger = parseInt(
       this.state.paymentDetails.amountToBePaid
     );
-    let accountBalanceResponse = await fetch(
-      `http://localhost:3003/account/${localStorage.userId}`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          balance : this.state.paymentDetails.amountToBePaid
-        }) , 
-        headers: {
-          "Content-Type": "Application/json",
-        },
-      }
-    );
-    if (accountBalanceResponse.ok) {
-        alert("Payment has been made succesffuly")
+
+    if (this.state.paymentDetails.amountToBePaid === "") {
+      swal("Enter A Valid Amount", "Error", {
+            })
     }
-    
+
     else {
-      alert ("Oopss , something went wrong....")
+      let accountBalanceResponse = await fetch(
+        `http://localhost:3003/account/${localStorage.userId}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            balance : this.state.paymentDetails.amountToBePaid
+          }) , 
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }
+      );
+      if (accountBalanceResponse.ok) {
+                 swal("Sweet ! ! !", "Payment Made Successfully", {  
+            }).then((ok) => {
+              if (ok) {
+               window.location.reload(true); 
+   }
+ });
+      }
+      
+      else {
+       swal("Oopss... , Something Went Wrong", "Error", {
+            })
+      }
     }
   };
+
   updatePaymentForm = (event) => {
     let paymentDetails = this.state.paymentDetails;
     let id = event.currentTarget.id;
@@ -52,7 +69,8 @@ class ProfilePage extends Component {
             <div>Profile Page</div>
           ) : (
             <div>
-              <Container>
+                <Container id="profileWrapper">
+                  <h2 className="text-center">Top Up Your Account</h2>
                 <Form className="mt-5" onSubmit={(e) => this.makePayment(e)}>
                   <Form.Group style={{ marginTop: "1rem" }}>
                     <Form.Control
@@ -91,7 +109,7 @@ class ProfilePage extends Component {
                       type="text"
                       id="cvv"
                       value={this.state.paymentDetails.cvv}
-                      placeholder="Enter The Name On Your Card"
+                      placeholder="Enter The CVV On Your Card"
                       size="md"
                       onChange={(e) => this.updatePaymentForm(e)}
                     />
@@ -107,7 +125,7 @@ class ProfilePage extends Component {
                     />
                   </Form.Group>
                   <div className="text-center mt-3">
-                    <button id="Login" type="submit" className=" mt-3 ">
+                    <button id="topUp" type="submit" className=" mt-3 ">
                       Pay Now
                     </button>
                   </div>

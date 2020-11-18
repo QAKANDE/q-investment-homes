@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import users from "../Assets/users.png";
-import home from "../Assets/home.png";
+import users from "../Assets/users.svg";
+import home from "../Assets/homes.svg";
 import "./css/About.css";
 
 class About extends Component {
@@ -30,7 +30,7 @@ class About extends Component {
               <div className="d-flex flex-column">
                 {/* <i class="fa fa-users fa-5x"></i> */}
                 <div>
-                  <img src={users}></img>
+                  <img src={users} className="user-img"></img>
                 </div>
                 <p>200+ Investors</p>
               </div>
@@ -39,7 +39,7 @@ class About extends Component {
               <div className="d-flex flex-column">
                 {/* <i class="fa fa-home fa-5x"></i> */}
                 <div>
-                  <img src={home}></img>
+                  <img src={home} className="user-img"></img>
                 </div>
                 <p>100+ Properties</p>
               </div>

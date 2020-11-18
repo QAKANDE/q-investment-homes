@@ -1,0 +1,75 @@
+#roiDiv {
+  margin-top: 3rem;
+}
+
+#calculateROIHeader {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#property-address {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#ROISpinnerOpenModal {
+  width: auto;
+  height: auto;
+  border: 0 !important;
+}
+
+#calculate-roi-button {
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+#calculate-invest-button {
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+#investBtnDiv {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+#ROISpinner {
+  margin-left: 10%;
+  margin-top: 10%;
+  margin-left: 50%;
+}
+#ROISpinnerText {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+#noInvestmentValueDiv {
+  margin-top: 7%;
+  margin-bottom: 5%;
+}
+
+#noInvestmentValueDivText {
+  font-size: 2rem;
+}
+
+#investButton {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  background-color: black;
+  /* background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: bolder; */
+}

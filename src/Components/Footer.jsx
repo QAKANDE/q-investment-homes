@@ -7,9 +7,9 @@ class Footer extends Component {
   render() {
     return (
       <div id="Footer">
-        <Container>
+        <Container >
           <Row>
-            <Col>
+            <Col className="footerWrapper">
               <span className="Footer-header">Business</span>
               <br />
               <a className="footer-anchor" href="#">
@@ -20,7 +20,7 @@ class Footer extends Component {
                 Calculate ROI
               </a>
             </Col>
-            <Col>
+           <Col className="footerWrapper">
               <span className="Footer-header">About Us</span>
               <br />
               <a className="footer-anchor" href="#">
@@ -31,7 +31,7 @@ class Footer extends Component {
                 Our Team
               </a>
             </Col>
-            <Col>
+           <Col className="footerWrapper">
               <span className="Footer-header">Terms And Conditions</span>
               <br />
               <Link to={"/PrivacyPolicy"}>
@@ -47,9 +47,9 @@ class Footer extends Component {
               </Link>
             </Col>
 
-            <Col>
+           {/* <Col className="footerWrapper">
               <span className="Footer-header">Social Media</span>
-            </Col>
+          </Col> */}
           </Row>
         </Container>
       </div>

@@ -39,6 +39,12 @@ class NavBar extends Component {
     
   };
 
+//   componentDidUpdate(prevProps, prevState) {
+//   if (prevState.accountBalance !== this.state.accountBalance) {
+//     window.location.reload()
+//   }
+// }
+
   fetchAccountBalance = async () => {
     let accountBalanceResponse = await fetch(
       `http://localhost:3003/account/${localStorage.userId}`,
@@ -97,30 +103,31 @@ class NavBar extends Component {
             <Link to={"/ContactUs"} className="nav-link">
               Contact Us
             </Link>
+            {this.state.userFirstName === "" ? (
+              <div className="d-flex flex-row">
             <Link to={"/Login"} className="nav-link">
               Login
             </Link>
-            {this.state.userFirstName === "" ? (
               <Link to={"/SignUp"}>
                 <button id="sign-up-btn" >Sign Up</button>
               </Link>
+              </div>
             ) : (
               <Link to={"/profile"}>
-                <div>
+                <div id="profileContainer">
                   <div>
-                    <i class="fa fa-user fa-4x mx-3"></i>
+                    <i class="fa fa-user fa-2x mx-3"></i>
                     <p>
                       {this.state.userFirstName} {this.state.userLastName}
                     </p>
                   </div>
                     <div>
-                      {this.state.accountBalance === "" ?  <h5> Balance :  0 </h5> :  <h5>Balance : {this.state.accountBalance}</h5>}
-                    
+                      {this.state.accountBalance === "" ?  <h5> Bal :  0 </h5> :  <h5>Bal : {this.state.accountBalance}</h5>}
                   </div>
                 </div>
               </Link>
               )}
-            <Nav.Link  onClick={()=> this.logOut()}>Log Out</Nav.Link>
+            <Nav.Link  onClick={()=> this.logOut()}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

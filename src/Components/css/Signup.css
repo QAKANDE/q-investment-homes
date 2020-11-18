@@ -1,0 +1,22 @@
+#signup-header {
+  margin-top: 5rem;
+}
+#signup-wrapper {
+  margin-top: 5rem;
+}
+
+#signUp-form {
+  margin-top: 3rem;
+}
+
+#createAccount {
+  background-color: hsl(40 91% 91% / 1);
+  box-shadow: 0 3px 6px -2px rgb(0, 0, 0, 0.3);
+  border: 0;
+  color: #692569;
+  border-radius: 6px;
+  font-size: 2rem;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}

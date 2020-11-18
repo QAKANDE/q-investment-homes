@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import swal from '@sweetalert/with-react'
 import axios from "axios";
 import "./css/Login.css";
 class Login extends Component {
@@ -19,89 +20,81 @@ class Login extends Component {
       loginDetails,
     });
   };
-  loginHandler = async (e) => {
-    e.preventDefault();
-   
-    let response = await fetch("http://localhost:3003/users/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: this.state.loginDetails.email, 
-        password : this.state.loginDetails.password
-      }) , 
-       headers: {
-          "Content-Type": "Application/json",
-        },
-    });
-    if (response.ok) {
-      const token = await response.text();
-      localStorage["accessToken"] = token ;
-    localStorage["email"] = this.state.loginDetails.email;
-    if (localStorage.accessToken) {
-      const authorize = await fetch(
-        `http://localhost:3003/users/${localStorage.email}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.accessToken,
-          },
-        }
-      );
-      if (authorize.ok) {
-        const userDetails = await authorize.json()
-        userDetails.map((id) => {
-          return localStorage["userId"] = id._id
-        })
-        // this.props.history.push(`/user/${localStorage.userId}`)
-     window.location.href = `http://localhost:3000/user/${localStorage.userId}`;
-      }
-    } else {
-      alert("Please Log in");
-    }
-    }
 
+  redirect = () => {
+        window.location.href = `http://localhost:3000/user/${localStorage.userId}`;
+  }
+  loginHandler = async (e) => {
+     e.preventDefault();
+    if (localStorage.userId) {
+      alert("You are already logged In")
+    }
     else {
-      alert("Oops , something went wrong ....")
+
+      let response = await fetch("http://localhost:3003/users/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: this.state.loginDetails.email, 
+          password : this.state.loginDetails.password
+        }) , 
+         headers: {
+            "Content-Type": "Application/json",
+          },
+      });
+      if (response.ok) {
+        const token = await response.text();
+        localStorage["accessToken"] = token ;
+      localStorage["email"] = this.state.loginDetails.email;
+      if (localStorage.accessToken) {
+        const authorize = await fetch(
+          `http://localhost:3003/users/${localStorage.email}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.accessToken,
+            },
+          }
+        );
+        if (authorize.ok) {
+          const userDetails = await authorize.json()
+          userDetails.map((id) => {
+            return localStorage["userId"] = id._id
+          })
+        }
+               swal("Sweet ! ! !", "Log In successful", {
+          
+       
+            }).then((ok) => {
+              if (ok) {
+                window.history.back();
+                // window.location.href = `http://localhost:3000/user/${localStorage.userId}`; 
+              }
+              
+ });
+      } else {
+          swal("Please log In Again", {
+          
+       
+            })
+      }
+      }
+  
+      else {
+         swal("Ooopsss....", "Something Went Wrong", {
+            })
+      }
     }
    
   };
-  // loginHandler = async (e) => {
-  //   e.preventDefault();
 
-  //   let response = await fetch("http://localhost:3003/users/login", {
-  //     method: "POST",
-  //     body: JSON.stringify(this.state.loginDetails),
-  //     headers: {
-  //       "Content-Type": "Application/json",
-  //     },
-  //   });
-  //   if (response.ok) {
-  //     const token = await response.json();
-  //     console.log(token);
-  //   } else {
-  //     alert("Error Occured");
-  //   }
 
-  //   // localStorage["accessToken"] = generatedToken.token;
-  //   // localStorage["email"] = this.state.loginDetails.email;
-  //   // if (localStorage.accessToken) {
-  //   //   const authorize = await fetch("http://localhost:3002/users/me", {
-  //   //     headers: {
-  //   //       Authorization: "Bearer " + localStorage.accessToken,
-  //   //     },
-  //   //   });
-  //   //   if (authorize.ok) {
-  //   //     window.location.href = "http://localhost:3001/";
-  //   //   } else {
-  //   //     alert("Please Log in");
-  //   //   }
-  //   // }
-  // };
+
   render() {
     return (
       <div id="Log-In" className="mt-5">
-        <h3 className="text-center mt-5">Log In</h3>
+        <h3 className="text-center mt-5">Login</h3>
         <h3 className="text-center mt-4">Sign Into An Existing Account</h3>
         <Container>
-          <Form className="mt-5" >
+          <Form  id="login-form" >
             <Form.Group style={{ marginTop: "1rem" }}>
               <Form.Control
                 htmlFor="email"
@@ -127,8 +120,8 @@ class Login extends Component {
               <Form.Check type="checkbox" label="Remember Me" />
             </Form.Group>
             <div className="text-center mt-3">
-              <button id="Login" type="submit" className=" mt-3" onClick={(e) => this.loginHandler(e)}>
-                Log In
+              <button id="login" type="submit" onClick={(e) => this.loginHandler(e)}>
+                Login
               </button>
             </div>
           </Form>
