@@ -19,7 +19,7 @@ class NavBar extends Component {
   componentDidMount = async () => {   
       if (localStorage.userId) {
         let response = await fetch(
-          `http://localhost:3003/users/signUp/${localStorage.userId}`,
+          `https://q-investment-home-back-end.herokuapp.com/signUp/${localStorage.userId}`,
           {
             method: "GET",
             headers: {
@@ -47,7 +47,7 @@ class NavBar extends Component {
 
   fetchAccountBalance = async () => {
     let accountBalanceResponse = await fetch(
-      `http://localhost:3003/account/${localStorage.userId}`,
+      `https://q-investment-home-back-end.herokuapp.com/account/${localStorage.userId}`,
       {
         method: "GET",
         headers: {
@@ -63,7 +63,7 @@ class NavBar extends Component {
 
   logOut = () => {
     localStorage.clear()
-    window.location.href = `http://localhost:3000/`;
+    window.location.href = `https://q-investment-home-front-end.herokuapp.com/`;
   //  window.location.reload()
   }
 

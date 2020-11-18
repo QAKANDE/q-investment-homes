@@ -52,7 +52,7 @@ class Details extends Component {
 
   redirect = () => {
      const propertyId = this.props.match.params.id;
-     window.location.href = `http://localhost:3000/CalculateROI/${propertyId}`; 
+     window.location.href = `https://q-investment-home-front-end.herokuapp.com/CalculateROI/${propertyId}`; 
   }
   render() {
     return (

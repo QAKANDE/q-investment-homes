@@ -100,7 +100,7 @@ class CalculateROI extends Component {
                    swal("Please Log In", {  
             }).then((ok) => {
               if (ok) {
-                window.location.href = `http://localhost:3000/Login`; 
+                window.location.href = `https://q-investment-home-front-end.herokuapp.com/Login`; 
    }
  });
     }
@@ -115,7 +115,7 @@ class CalculateROI extends Component {
     }
     else {
        const accountBalanceResponse = await fetch(
-      `http://localhost:3003/account/${localStorage.userId}`,
+      `https://q-investment-home-back-end.herokuapp.com/${localStorage.userId}`,
       {
         method: "GET",
         headers: {
@@ -129,12 +129,12 @@ class CalculateROI extends Component {
                       swal("Please Top Up Your Account", {  
             }).then((ok) => {
               if (ok) {
-                window.location.href = `http://localhost:3000/profile`; 
+                window.location.href = `https://q-investment-home-front-end.herokuapp.com/profile`; 
    }
  })
       }
       else {
-        const deductFromBalance = await fetch(`http://localhost:3003/account/accountBalanceReduce/${localStorage.userId}`,
+        const deductFromBalance = await fetch(`https://q-investment-home-back-end.herokuapp.com/account/accountBalanceReduce/${localStorage.userId}`,
         {
           method: "POST",
          body: JSON.stringify({

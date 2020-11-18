@@ -28,7 +28,7 @@ class SignUp extends Component {
 
   submitDetails = async (event) => {
     event.preventDefault();
-    let response = await fetch("http://localhost:3003/users/register", {
+    let response = await fetch("https://q-investment-home-back-end.herokuapp.com/users/register", {
       method: "POST",
       body: JSON.stringify(this.state.details),
       headers: {
@@ -50,7 +50,7 @@ class SignUp extends Component {
       });
       localStorage["userId"] = detailsFromApi
          let accountBalanceResponse = await fetch(
-      `http://localhost:3003/account/${localStorage.userId}`,
+      `https://q-investment-home-back-end.herokuapp.com/account/${localStorage.userId}`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -64,7 +64,7 @@ class SignUp extends Component {
                swal("Sweet ! ! !", "Your Account Has Been Created", {  
             }).then((ok) => {
               if (ok) {
-                window.location.href = `http://localhost:3000/user/${localStorage.userId}`; 
+                window.location.href = `https://q-investment-home-front-end.herokuapp.com/user/${localStorage.userId}`; 
    }
  });
     } else {

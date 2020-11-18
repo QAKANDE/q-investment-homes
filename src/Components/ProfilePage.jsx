@@ -26,7 +26,7 @@ class ProfilePage extends Component {
 
     else {
       let accountBalanceResponse = await fetch(
-        `http://localhost:3003/account/${localStorage.userId}`,
+        `https://q-investment-home-back-end.herokuapp.com/account/${localStorage.userId}`,
         {
           method: "POST",
           body: JSON.stringify({

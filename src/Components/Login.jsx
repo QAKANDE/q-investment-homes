@@ -22,7 +22,7 @@ class Login extends Component {
   };
 
   redirect = () => {
-        window.location.href = `http://localhost:3000/user/${localStorage.userId}`;
+        window.location.href = `https://q-investment-home-back-end.herokuapp.com/${localStorage.userId}`;
   }
   loginHandler = async (e) => {
      e.preventDefault();
@@ -31,7 +31,7 @@ class Login extends Component {
     }
     else {
 
-      let response = await fetch("http://localhost:3003/users/login", {
+      let response = await fetch("https://q-investment-home-front-end.herokuapp.com/login", {
         method: "POST",
         body: JSON.stringify({
           email: this.state.loginDetails.email, 
@@ -47,7 +47,7 @@ class Login extends Component {
       localStorage["email"] = this.state.loginDetails.email;
       if (localStorage.accessToken) {
         const authorize = await fetch(
-          `http://localhost:3003/users/${localStorage.email}`,
+          `https://q-investment-home-back-end.herokuapp.com/users/${localStorage.email}`,
           {
             headers: {
               Authorization: "Bearer " + localStorage.accessToken,
