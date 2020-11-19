@@ -43,6 +43,7 @@ class Login extends Component {
       });
       if (response.ok) {
         const token = await response.json();
+        console.log(token)
         localStorage["accessToken"] = token ;
       localStorage["email"] = this.state.loginDetails.email;
       if (localStorage.accessToken) {
