@@ -19,7 +19,7 @@ class NavBar extends Component {
   componentDidMount = async () => {   
       if (localStorage.userId) {
         let response = await fetch(
-          `https://q-investment-home-back-end.herokuapp.com/signUp/${localStorage.userId}`,
+          `https://q-investment-home-back-end.herokuapp.com/users/${localStorage.userId}`,
           {
             method: "GET",
             headers: {
