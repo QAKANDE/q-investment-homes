@@ -31,7 +31,7 @@ class Login extends Component {
     }
     else {
 
-      let response = await fetch("https://q-investment-home-front-end.herokuapp.com/users/login", {
+      let response = await fetch("https://q-investment-home-back-end.herokuapp.com/users/login", {
         method: "POST",
         body: JSON.stringify({
           email: this.state.loginDetails.email, 
@@ -42,9 +42,9 @@ class Login extends Component {
           },
       });
       if (response.ok) {
-        const token = await response.text();
-        console.log(token)
-        localStorage["accessToken"] = token ;
+        const token = await response.json();
+        console.log("tpkem" , token.newAccessToken)
+        localStorage["accessToken"] = token.newAccessToken ;
       localStorage["email"] = this.state.loginDetails.email;
       if (localStorage.accessToken) {
         const authorize = await fetch(
@@ -59,6 +59,7 @@ class Login extends Component {
           const userDetails = await authorize.json()
           userDetails.map((id) => {
             return localStorage["userId"] = id._id
+            console.log("USERID" , id._id)
           })
         }
                swal("Sweet ! ! !", "Log In successful", {
