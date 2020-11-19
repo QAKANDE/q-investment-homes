@@ -28,7 +28,6 @@ class NavBar extends Component {
           }
         );
         const userDetails = await response.json();
-        console.log(userDetails);
   
         this.setState({
           userFirstName: userDetails.firstName,
