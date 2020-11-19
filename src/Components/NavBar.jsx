@@ -29,6 +29,7 @@ class NavBar extends Component {
           }
         );
         const userDetails = await response.json();
+        console.log(userDetails)
   
         this.setState({
           userFirstName: userDetails.firstName,
@@ -39,11 +40,6 @@ class NavBar extends Component {
     
   };
 
-//   componentDidUpdate(prevProps, prevState) {
-//   if (prevState.accountBalance !== this.state.accountBalance) {
-//     window.location.reload()
-//   }
-// }
 
   fetchAccountBalance = async () => {
     let accountBalanceResponse = await fetch(
@@ -56,6 +52,7 @@ class NavBar extends Component {
       }
     );
     const balanceFromApi = await accountBalanceResponse.json();
+    console.log(balanceFromApi)
     this.setState({
       accountBalance: balanceFromApi.balance,
     });

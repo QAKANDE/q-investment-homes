@@ -27,7 +27,8 @@ class Login extends Component {
   loginHandler = async (e) => {
      e.preventDefault();
     if (localStorage.userId) {
-      alert("You are already logged In")
+     swal("You Are Logged In", {
+            })
     }
     else {
 
