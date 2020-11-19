@@ -24,6 +24,7 @@ class NavBar extends Component {
             method: "GET",
             headers: {
               "Content-Type": "Application/json",
+              Authorization: "Bearer " + localStorage.accessToken,
             },
           }
         );
