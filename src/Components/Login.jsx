@@ -31,7 +31,6 @@ class Login extends Component {
             })
     }
     else {
-
       let response = await fetch("https://q-investment-home-back-end.herokuapp.com/users/login", {
         method: "POST",
         body: JSON.stringify({

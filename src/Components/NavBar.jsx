@@ -28,13 +28,13 @@ class NavBar extends Component {
             },
           }
         );
-        const userDetails = await response.json();
-        console.log("navBar usedetailsss", userDetails)
-  
+        const userDetails = await response.json();  
         this.setState({
           userFirstName: userDetails.firstName,
           userLastName: userDetails.lastName,
         });
+
+        console.log(this.state.userFirstName)
         this.fetchAccountBalance();
       }
     
