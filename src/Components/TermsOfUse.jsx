@@ -264,7 +264,7 @@ class TermsOfUse extends Component {
                     the Platform, or arising from the booking of accommodation
                     with us, will be governed by the laws of England and the
                     English Courts shall have exclusive jurisdiction to
-                    determine such disputes or matters.
+                    determine such disputes or matters
                   </p>
                 </li>
               </ul>
