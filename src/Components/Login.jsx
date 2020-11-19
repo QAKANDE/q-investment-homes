@@ -42,8 +42,8 @@ class Login extends Component {
           },
       });
       if (response.ok) {
-        const token = await response.text();
-        localStorage["accessToken"] = token ;
+        const token = await response.json();
+        localStorage["accessToken"] = token.token ;
       localStorage["email"] = this.state.loginDetails.email;
       if (localStorage.accessToken) {
         const authorize = await fetch(
@@ -72,8 +72,6 @@ class Login extends Component {
  });
       } else {
           swal("Please log In Again", {
-          
-       
             })
       }
       }
