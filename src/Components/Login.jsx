@@ -42,7 +42,7 @@ class Login extends Component {
           },
       });
       if (response.ok) {
-        const token = await response.json();
+        const token = await response.text();
         console.log(token)
         localStorage["accessToken"] = token ;
       localStorage["email"] = this.state.loginDetails.email;
