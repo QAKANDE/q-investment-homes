@@ -93,7 +93,7 @@ class Login extends Component {
       }
   
       else {
-         swal("Ooopsss....", "Something Went Wrong", {
+         swal("Ooopsss...", "Something Went Wrong", {
             })
       }
     }
