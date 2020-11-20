@@ -38,7 +38,7 @@ class ProfilePage extends Component {
         }
       );
       if (accountBalanceResponse.ok) {
-                 swal("Sweet ! ! !", "Payment Made Successfully", {  
+                 swal("Sweet ! ! !", "Payment Success", {  
             }).then((ok) => {
               if (ok) {
                 window.location.reload(true);
