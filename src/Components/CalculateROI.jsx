@@ -126,6 +126,7 @@ class CalculateROI extends Component {
       const balanceFromApi = await accountBalanceResponse.json();
       console.log(balanceFromApi)
       if (balanceFromApi.balance < convertValue || balanceFromApi.balance === 0) {
+        console.log(balanceFromApi.balance)
                       swal("Please Top Up Your Account", {  
             }).then((ok) => {
               if (ok) {
