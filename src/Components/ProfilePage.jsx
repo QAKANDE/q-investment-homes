@@ -41,7 +41,8 @@ class ProfilePage extends Component {
                  swal("Sweet ! ! !", "Payment Made Successfully", {  
             }).then((ok) => {
               if (ok) {
-               window.location.reload(true); 
+                window.location.reload(true);
+                window.history.back()
    }
  });
       }
