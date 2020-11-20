@@ -16,22 +16,22 @@ class NavBar extends Component {
  
 
   
-  componentDidMount = async () => {   
+  componentDidMount = async () => {  
       if (localStorage.userId) {
-        let response = await fetch(
-          `https://q-investment-home-back-end.herokuapp.com/users/${localStorage.email}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "Application/json",
-              Authorization: "Bearer " + localStorage.accessToken,
-            },
-          }
-        );
-        const userDetails = await response.json();  
+        // let response = await fetch(
+        //   `https://q-investment-home-back-end.herokuapp.com/users/${localStorage.email}`,
+        //   {
+        //     method: "GET",
+        //     headers: {
+        //       "Content-Type": "Application/json",
+        //       Authorization: "Bearer " + localStorage.accessToken,
+        //     },
+        //   }
+        // );
+        // const userDetails = await response.json();  
         this.setState({
-          userFirstName: userDetails.firstName,
-          userLastName: userDetails.lastName,
+          userFirstName: localStorage.firstName,
+          userLastName: localStorage.lastName,
         });
 
         console.log(this.state.userFirstName)
@@ -52,7 +52,6 @@ class NavBar extends Component {
       }
     );
     const balanceFromApi = await accountBalanceResponse.json();
-    console.log(balanceFromApi)
     this.setState({
       accountBalance: balanceFromApi.balance,
     });

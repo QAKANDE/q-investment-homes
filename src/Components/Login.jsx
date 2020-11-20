@@ -10,6 +10,9 @@ class Login extends Component {
       email: "",
       password: "",
     },
+    firstName: "",
+    lastName: "",
+    id:""
   };
 
   updateLogin = (event) => {
@@ -55,12 +58,23 @@ class Login extends Component {
             },
           }
         );
+
+        const obj = {
+          firstname: "",
+          lastname:"",
+        }
         if (authorize.ok) {
           const userDetails = await authorize.json()
           userDetails.map((id) => {
-            return localStorage["userId"] = id._id
-            console.log("USERID" , id._id)
+            this.setState({
+              firstName: id.firstName,
+              lastName: id.lastName,
+              id: id._id
+            })
           })
+          localStorage["userId"] = this.state.id
+          localStorage["firstName"] = this.state.firstName
+          localStorage["lastName"] = this.state.lastName
         }
                swal("Sweet ! ! !", "Log In successful", {
           
