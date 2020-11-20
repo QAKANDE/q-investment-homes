@@ -115,7 +115,7 @@ class CalculateROI extends Component {
     }
     else {
        const accountBalanceResponse = await fetch(
-      `https://q-investment-home-back-end.herokuapp.com/${localStorage.userId}`,
+      `https://q-investment-home-back-end.herokuapp.com/account/${localStorage.userId}`,
       {
         method: "GET",
         headers: {
