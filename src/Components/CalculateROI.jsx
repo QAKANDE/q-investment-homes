@@ -230,13 +230,9 @@ class CalculateROI extends Component {
   render() {
     return (
       <Container className="mt-5">
-           {/* <ReactModal isOpen={this.state.openROISpinner}  id="ROISpinnerOpenModal"> 
-              <Spinner animation="grow" id="ROISpinner" />
-          </ReactModal> */}
         <div className="d-flex justify-content-center" id="calculateROIHeader">
           <h3>Calculate ROI ( Return On Investment )</h3>
         </div>
-
         <div id="formDiv">
           <Row>
             <Col xl={9}>
@@ -255,7 +251,7 @@ class CalculateROI extends Component {
               Calculate ROI
             </button>
             </Col>
-          </Row>
+          </Row> 
         </div>
         <div id="roiDiv">
           {this.state.price === "" ?
@@ -322,8 +318,6 @@ class CalculateROI extends Component {
             </div> : 
           
             <div id="roiDiv">
-              <Row>
-                <Col> 
                   {this.state.naira === true ?
                     <div>
               <div className="d-flex justify-content-between mt-4">
@@ -362,14 +356,15 @@ class CalculateROI extends Component {
           </div>
           <div className="d-flex justify-content-between mt-4">
                 <h5>Annual Return On Investment For Each Investor</h5>
-                {this.state.annualReturnOnInvestForEach === "0" ? <h4 className="mx-3">1 %</h4> : <h4 className="mx-1"> {this.state.annualReturnOnInvestForEach} %</h4>}
+                {this.state.annualReturnOnInvestForEach === "0" ? <h4>1 %</h4> : <h4> {this.state.annualReturnOnInvestForEach} %</h4>}
             
               </div>
-                </Col>
+              <hr></hr>
+                <Row id="pie-chart-row">
                 <Col>
                   <PieChart
                     animate
-              animationDuration={2000}
+              animationDuration={2400}
               animationEasing="ease-out"
               center={[50, 50]}
               lengthAngle={360}
@@ -390,6 +385,24 @@ class CalculateROI extends Component {
                   ]}
                 style={{ height: '300px' }}
 />
+                </Col>
+                <Col className="mt-5">
+                  <div  className="d-flex flex-row">
+            <div id="first-one"></div>
+            <p className="mx-3 mt-2">Return On Investment</p>
+          </div>
+          <div  className="d-flex flex-row">
+            <div id="second-one"></div>
+            <p className="mx-3 mt-2">Return On Investment For Each Investor</p>
+          </div>
+          <div  className="d-flex flex-row">
+            <div id="third-one"></div>
+            <p className="mx-3 mt-2">Annual Return On Investment</p>
+          </div>
+          <div  className="d-flex flex-row">
+            <div id="fourth-one"></div>
+            <p className="mx-3 mt-2">Annual Return On Investment For Each Investor</p>
+          </div>
                 </Col>
               </Row>
           </div>

@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import ReactModal from "react-modal";
-import resort4 from "../Assets/resort4.jpg";
+import placeHolder from "../Assets/propertyplace.jpg";
 import {
   Container,
   Card,
@@ -43,49 +43,7 @@ class PropertyListings extends Component {
     ROI: null,
     investmentValueToDisplay: null,
   };
-  hideModal = () => {
-    this.setState({
-      selected: false,
-    });
-  };
-
-  openModal = async (id) => {
-    const res = await fetch(
-      `https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${id}`,
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "realtor.p.rapidapi.com",
-          "x-rapidapi-key":
-            "3e6e71316fmsh4aac5b7ec80b565p135d26jsn334c29d48c43",
-        },
-      }
-    );
-    const data = await res.json();
-
-    this.setState({
-      modalIsOpen: true,
-      cardId: id,
-      dataForModal: data.properties,
-    });
-    this.state.dataForModal.map((x) => {
-      this.setState({
-        surroundings: x.address.neighborhoods,
-        photos: x.photos,
-        featureTags: x.feature_tags,
-        taxHistory: x.tax_history,
-      });
-    });
-    console.log(this.state.surroundings);
-    console.log(this.state.photos);
-
-    console.log(this.state.taxHistory);
-  };
-  updateInvestmentValue = (event) => {
-    this.setState({
-      investmentValue: event.target.value,
-    });
-  };
+ 
 
   capitalize = (str) => {
     const capital = str.charAt(0).toUpperCase() + str.slice(1);
@@ -110,6 +68,7 @@ class PropertyListings extends Component {
     this.setState({
       properties: data.properties,
     });
+    console.log("props" , this.state.properties.slice(0,3))
   };
   render(props) {
     return (
@@ -128,10 +87,10 @@ class PropertyListings extends Component {
               {this.state.properties.slice(0, 3).map((property, i) => {
                 return (
                   <Card key={i} id="property-card">
-                    {property.thumbnail === "" ?
+                    {!property.thumbnail  ?
                       <Card.Img
                       variant="top"
-                      src={resort4}
+                      src={placeHolder}
                       alt="Property Image"
                     /> :    
                     <Card.Img

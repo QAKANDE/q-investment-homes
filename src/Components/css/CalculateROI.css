@@ -1,5 +1,6 @@
 #roiDiv {
   margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
 }
 
 #calculateROIHeader {
@@ -45,8 +46,8 @@
 }
 
 #investBtnDiv {
-  margin-bottom: 3rem;
-  margin-top: 3rem;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
 }
 
 #ROISpinner {
@@ -81,4 +82,33 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin-top: 1.5rem;
+}
+
+#first-one {
+  width: 30px;
+  height: 30px;
+  margin-top: 0.2rem;
+  background-color: #e38627;
+}
+#second-one {
+  width: 30px;
+  height: 30px;
+  margin-top: 0.2rem;
+  background-color: #c13c37;
+}
+#third-one {
+  width: 30px;
+  height: 30px;
+  margin-top: 0.2rem;
+  background-color: #6a2135;
+}
+#fourth-one {
+  width: 30px;
+  height: 30px;
+  margin-top: 0.2rem;
+  background-color: #692569;
+}
+
+#pie-chart-row {
+  margin-top: 2rem;
 }
