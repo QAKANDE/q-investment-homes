@@ -1,12 +1,22 @@
 import React, { Component } from "react";
-import { Container, Form, FormGroup, Button, Spinner , Row , Col} from "react-bootstrap";
+import { Container, Form, FormGroup, Button, Spinner, Row, Col , DropdownButton , ButtonGroup , Dropdown } from "react-bootstrap";
+import { PieChart } from 'react-minimal-pie-chart';
 import {Link} from "react-router-dom"
 import swal from '@sweetalert/with-react'
 import ReactModal from "react-modal";
 import "../Components/css/CalculateROI.css"
+import ReactSvgPieChart from "react-svg-piechart"
+import { convertCurrency, getCurrencyRate, getCurrencyRateList } from 'currencies-exchange-rates';
+
+
+
 
 class CalculateROI extends Component {
   state = {
+    dataForPie : [],
+    roiDiv: false,
+    naira: false,
+    dollars: false,
     price: "",
     address: {},
     openROISpinner: true , 
@@ -18,7 +28,8 @@ class CalculateROI extends Component {
     yearlyIncome: "",
     annualReturnOnInvest: "",
     annualReturnOnInvestForEach: "", 
-    reloadCheck : false,
+    reloadCheck: false,
+    minimumInvestMent:""
   };
   componentDidMount = async () => {
     const propertyId = this.props.match.params.id;
@@ -29,7 +40,7 @@ class CalculateROI extends Component {
         headers: {
           "x-rapidapi-host": "realtor.p.rapidapi.com",
           "x-rapidapi-key":
-            "3e6e71316fmsh4aac5b7ec80b565p135d26jsn334c29d48c43",
+            "2163165846msh4098addb4987fcap12e2c9jsn7001d729dab7",
         },
       }
     );
@@ -43,6 +54,7 @@ class CalculateROI extends Component {
       return this.setState({
         price: detail.price,
         address: detail.address,
+        minimumInvestMent: detail.price / 4
       });
     });
 
@@ -50,6 +62,7 @@ class CalculateROI extends Component {
       openROISpinner : false
     })
     console.log(this.state.details);
+    console.log("pie" , this.state.dataForPie)
   };
 
  
@@ -60,12 +73,53 @@ class CalculateROI extends Component {
     });
   };
 
+  convertToNaira = () => {
+    if (this.state.roiDiv === false) {
+       swal("Please Calculate ROI", "error")
+    }
+    else {
+      const yearlyIncomeToNaira = this.state.yearlyIncome * 600 
+      const priceToNaira = parseInt(this.state.price * 600)
+      const minimumInvestMentToNaira = Math.round(priceToNaira / 4)
+      const minimumInvestMentInNaira = minimumInvestMentToNaira * 600 
+      this.setState({
+        yearlyIncome: yearlyIncomeToNaira,
+        price: priceToNaira,
+        minimumInvestMent: minimumInvestMentInNaira,
+        naira:true
+      })
+
+    }
+ 
+   
+  }
+
+  convertToDollars = () => {
+      if (this.state.roiDiv === false) {
+       swal("Please Calculate ROI", "error")
+    }
+    else {
+      const yearlyIncomeToDollars = Math.round(this.state.yearlyIncome * 1.33 )
+      const priceToDollars = parseInt(this.state.price * 1.33)
+      const minimumInvestMentToDollars = Math.round(priceToDollars / 4)
+      const minimumInvestMentInDollars = Math.round(minimumInvestMentToDollars * 1.33 )
+      this.setState({
+        yearlyIncome: yearlyIncomeToDollars,
+        price: priceToDollars,
+        minimumInvestMent: minimumInvestMentInDollars ,
+        dollars:true
+      })
+    }
+
+  }
+
   calculateROI = (e) => {
+    const data = []
     e.preventDefault()
     const convertValue = parseInt(this.state.investmentValue)
     const convertPropertyPrice = parseInt(this.state.price)
     const mininumInvestment =Math.round(convertPropertyPrice / 4);
-    if (convertValue !== mininumInvestment) {
+    if (convertValue !== this.state.minimumInvestMent) {
       swal("Amount Entered isn't minimum investment value", "error")
       
       
@@ -77,8 +131,6 @@ class CalculateROI extends Component {
       const yearlyIncome = 500000; 
       const currentValue = yearlyIncome + convertPropertyPrice
       const profit = currentValue - convertPropertyPrice
-      // const minimumInvestMentDifferenceWithPrice = mininumInvestment / convertPropertyPrice 
-      // const mininumInvestmentInPercent = Math.round(minimumInvestMentDifferenceWithPrice * 100)
       const roi = profit / convertPropertyPrice
       const roiToPercent = Math.round(roi * 100)
       const roiForEachInvestor = Math.round(roiToPercent / 4)
@@ -89,8 +141,22 @@ class CalculateROI extends Component {
     roiForEachInvestor ,
     yearlyIncome,
     annualReturnOnInvest,
-    annualReturnOnInvestForEach, 
-      })      
+        annualReturnOnInvestForEach,
+        roiDiv: true,
+    minimumInvestMent:mininumInvestment
+      }) 
+      const dataFake = [{
+        Value : this.state.roiToPercent , Label : "ROI"
+      }, { Value: this.state.roiForEachInvestor  ,Label:"ROI For Each Investor" },
+        { Value: this.state.annualReturnOnInvest , Label:"Annual Return On Investment" },
+        { Value: this.state.annualReturnOnInvestForEach , Label:"Annual Return For Each Investor" }]
+      dataFake.map((d) => {
+        const insert = {
+         Label: d.Label, 
+      Value: d.Value,
+        }
+        this.state.dataForPie.push(insert)
+     })
     }
   }
 
@@ -159,6 +225,8 @@ class CalculateROI extends Component {
     }
     
   }
+
+  
   render() {
     return (
       <Container className="mt-5">
@@ -198,47 +266,132 @@ class CalculateROI extends Component {
           <div>
           <div className="text-center" id="property-address">
             <h3>
-              {this.state.address.line} , {this.state.address.county} ,{" "}
-              {this.state.address.city}
+              {this.state.address.line}  {this.state.address.county}  {this.state.address.city}
             </h3>
-          </div>
+              </div>
+              <Row>
+                <Col>           
+                <DropdownButton as={ButtonGroup} title="Select Other Currencies" id="bg-vertical-dropdown-2">
+    <Dropdown.Item eventKey="1" onClick={()=> this.convertToDollars()}>Dollars (USD)</Dropdown.Item>
+    <Dropdown.Item eventKey="2"onClick={()=> this.convertToNaira()}>Naira (NGN)</Dropdown.Item>
+  </DropdownButton>
+                </Col>
+                <Col>
+                  {this.state.naira === true ?
+                    <div>
+                 <div className="d-flex justify-content-between mt-4">
+            <h5>Property Value</h5>
+            <h4>N {this.state.price}</h4>
+          </div>{" "}
           <div className="d-flex justify-content-between mt-4">
+            <h5>Minimum Investment</h5>
+            <h4>N {this.state.minimumInvestMent}</h4>
+              </div>
+                    </div> : this.state.dollars === true ?
+                      <div>
+                        <div className="d-flex justify-content-between mt-4">
+            <h5>Property Value</h5>
+            <h4>$ {this.state.price}</h4>
+          </div>{" "}
+          <div className="d-flex justify-content-between mt-4">
+            <h5>Minimum Investment</h5>
+            <h4>$ {this.state.minimumInvestMent}</h4>
+              </div>
+
+                      </div> :
+                      <div>
+                        <div className="d-flex justify-content-between mt-4">
             <h5>Property Value</h5>
             <h4>£ {this.state.price}</h4>
           </div>{" "}
           <div className="d-flex justify-content-between mt-4">
             <h5>Minimum Investment</h5>
-            <h4>£ {Math.round(this.state.price / 4)}</h4>
-          </div>
+            <h4>£ {this.state.minimumInvestMent}</h4>
+              </div>  
+                  </div> }
+                </Col>
+              </Row>
+                <div>
+              </div>
           </div>
           }
           <hr></hr>
-          {this.state.yearlyIncome === "" ?
+          {this.state.roiDiv === false ?
             <div id="noInvestmentValueDiv">
               <p className="text-center" id="noInvestmentValueDivText">Please Calculate Return On Investment</p>
             </div> : 
           
-          <div>
+            <div id="roiDiv">
+              <Row>
+                <Col> 
+                  {this.state.naira === true ?
+                    <div>
               <div className="d-flex justify-content-between mt-4">
             <h5>Expected Investment Income Per Year</h5>
-            <h4>£ {this.state.yearlyIncome} </h4>
-          </div>
+            <h4>N {this.state.yearlyIncome} </h4>
+          </div> 
+                    </div> : this.state.dollars === true ?
+                      <div>
+    <div>
+              <div className="d-flex justify-content-between mt-4">
+            <h5>Expected Investment Income Per Year</h5>
+            <h4>$ {this.state.yearlyIncome} </h4>
+          </div> 
+                    </div>
+
+                      </div> : <div>
+                            <div>
+              <div className="d-flex justify-content-between mt-4">
+            <h5>Expected Investment Income Per Year</h5>
+            <h4 className="mx-3">£ {this.state.yearlyIncome} </h4>
+          </div> 
+                    </div>
+                    </div>
+                }  
           <div className="d-flex justify-content-between mt-4">
             <h5>Return On Investment</h5>
-            <h4>{this.state.roiToPercent} %</h4>
+          <h4 className="mx-3">{this.state.roiToPercent} %</h4>
           </div>
           <div className="d-flex justify-content-between mt-4">
             <h5>Return On Investment For Each Investor</h5>
-            <h4>{this.state.roiForEachInvestor} %</h4>
+          <h4 className="mx-3">{this.state.roiForEachInvestor} %</h4>
           </div>
           <div className="d-flex justify-content-between mt-4">
             <h5>Annual Return On Investment</h5>
-            <h4>{this.state.annualReturnOnInvest} %</h4>
+          <h4 className="mx-3">{this.state.annualReturnOnInvest} %</h4>
           </div>
           <div className="d-flex justify-content-between mt-4">
-            <h5>Annual Return On Investment For Each Investor</h5>
-            <h4> {this.state.annualReturnOnInvestForEach} %</h4>
-          </div>
+                <h5>Annual Return On Investment For Each Investor</h5>
+                {this.state.annualReturnOnInvestForEach === "0" ? <h4 className="mx-3">1 %</h4> : <h4 className="mx-1"> {this.state.annualReturnOnInvestForEach} %</h4>}
+            
+              </div>
+                </Col>
+                <Col>
+                  <PieChart
+                    animate
+              animationDuration={2000}
+              animationEasing="ease-out"
+              center={[50, 50]}
+              lengthAngle={360}
+              lineWidth={15}
+              paddingAngle={0}
+              radius={50}
+                    rounded
+                    startAngle={0}
+                    viewBoxSize={[100, 100]}
+                    labelPosition={65}
+                   
+                  
+                  data={[
+                    { title: 'we are', value: this.state.roiToPercent, color: '#E38627' },
+                    { title: 'Two', value: this.state.roiForEachInvestor, color: '#C13C37' },
+                      { title: 'Three', value: this.state.annualReturnOnInvest, color: '#6A2135' },
+                    {title:"four" , value:this.state.annualReturnOnInvestForEach , color : "#692569"}
+                  ]}
+                style={{ height: '300px' }}
+/>
+                </Col>
+              </Row>
           </div>
           }
         </div>

@@ -102,7 +102,7 @@ class PropertyListings extends Component {
         headers: {
           "x-rapidapi-host": "realtor.p.rapidapi.com",
           "x-rapidapi-key":
-            "3e6e71316fmsh4aac5b7ec80b565p135d26jsn334c29d48c43",
+            "2163165846msh4098addb4987fcap12e2c9jsn7001d729dab7",
         },
       }
     );
