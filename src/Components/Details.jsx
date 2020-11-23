@@ -67,8 +67,6 @@ class Details extends Component {
             {this.state.details.map((detail, index) => {
           return (
            <div className="mx-3">
-              <Row>
-                <Col lg={8}>
                   {this.state.details.map((detail, index) => {
                     return (
                       <>
@@ -204,35 +202,7 @@ class Details extends Component {
                       </>
                     );
                   })}
-                </Col>
-                <Col lg={4}>
-                  <div className="mt-4">
-                    <h3>Other Properties</h3>
-                    <Row>
-                      <Col>
-                        {/* {this.state.properties.slice(1, 4).map((y, index) => {
-                          return (
-                            <div onClick={() => this.openModal(y.property_id)}>
-                              <img src={y.thumbnail} className="mt-3"></img>
-                              <div
-                                onClick={() => this.openModal(y.property_id)}
-                                id="otherPropertiesInsideDetailsModal"
-                              >
-                                <p>
-                                  {y.address.line}
-                                  {y.address.county}
-                                </p>
-                                <p>{y.address.city}</p>
-                              </div>
-                            </div>
-                          );
-                        })} */}
-                        qUADRI
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-              </Row>
+              
             </div>
           );
         })}

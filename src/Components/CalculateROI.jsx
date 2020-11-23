@@ -375,8 +375,6 @@ class CalculateROI extends Component {
                     startAngle={0}
                     viewBoxSize={[100, 100]}
                     labelPosition={65}
-                   
-                  
                   data={[
                     { title: 'we are', value: this.state.roiToPercent, color: '#E38627' },
                     { title: 'Two', value: this.state.roiForEachInvestor, color: '#C13C37' },
