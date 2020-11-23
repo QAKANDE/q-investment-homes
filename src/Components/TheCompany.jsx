@@ -32,7 +32,7 @@ class TheCompany extends Component {
               hesitate to contact us.
             </p>
             <h4>Sincerely,</h4>
-            <h4>Quadri Omofolarin Akande, Founder</h4>
+            <h4>Quadri Omofolarin Akande , Founder</h4>
           </div>
         </Container>
         <hr></hr>
