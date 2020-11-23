@@ -315,52 +315,11 @@ class CalculateROI extends Component {
           {this.state.roiDiv === false ?
             <div id="noInvestmentValueDiv">
               <p className="text-center" id="noInvestmentValueDivText">Please Calculate Return On Investment</p>
-            </div> : 
+            </div> :
+            
           
             <div id="roiDiv">
-                  {this.state.naira === true ?
-                    <div>
-              <div className="d-flex justify-content-between mt-4">
-            <h5>Expected Investment Income Per Year</h5>
-            <h4>N {this.state.yearlyIncome} </h4>
-          </div> 
-                    </div> : this.state.dollars === true ?
-                      <div>
-    <div>
-              <div className="d-flex justify-content-between mt-4">
-            <h5>Expected Investment Income Per Year</h5>
-            <h4>$ {this.state.yearlyIncome} </h4>
-          </div> 
-                    </div>
-
-                      </div> : <div>
-                            <div>
-              <div className="d-flex justify-content-between mt-4">
-            <h5>Expected Investment Income Per Year</h5>
-            <h4 className="mx-3">£ {this.state.yearlyIncome} </h4>
-          </div> 
-                    </div>
-                    </div>
-                }  
-          <div className="d-flex justify-content-between mt-4">
-            <h5>Return On Investment</h5>
-          <h4 className="mx-3">{this.state.roiToPercent} %</h4>
-          </div>
-          <div className="d-flex justify-content-between mt-4">
-            <h5>Return On Investment For Each Investor</h5>
-          <h4 className="mx-3">{this.state.roiForEachInvestor} %</h4>
-          </div>
-          <div className="d-flex justify-content-between mt-4">
-            <h5>Annual Return On Investment</h5>
-          <h4 className="mx-3">{this.state.annualReturnOnInvest} %</h4>
-          </div>
-          <div className="d-flex justify-content-between mt-4">
-                <h5>Annual Return On Investment For Each Investor</h5>
-                {this.state.annualReturnOnInvestForEach === "0" ? <h4>1 %</h4> : <h4> {this.state.annualReturnOnInvestForEach} %</h4>}
-            
-              </div>
-              <hr></hr>
-                <Row id="pie-chart-row">
+               <Row id="pie-chart-row">
                 <Col>
                   <PieChart
                     animate
@@ -403,6 +362,48 @@ class CalculateROI extends Component {
           </div>
                 </Col>
               </Row>
+              <hr></hr>
+                  {this.state.naira === true ?
+                    <div>
+              <div className="d-flex justify-content-between mt-4">
+            <h5>Expected Investment Income Per Year</h5>
+            <h4>N {this.state.yearlyIncome} </h4>
+          </div> 
+                    </div> : this.state.dollars === true ?
+                      <div>
+    <div>
+              <div className="d-flex justify-content-between mt-4">
+            <h5>Expected Investment Income Per Year</h5>
+            <h4>$ {this.state.yearlyIncome} </h4>
+          </div> 
+                    </div>
+
+                      </div> : <div>
+                            <div>
+              <div className="d-flex justify-content-between mt-4">
+            <h5>Expected Investment Income Per Year</h5>
+            <h4 className="mx-3">£ {this.state.yearlyIncome} </h4>
+          </div> 
+                    </div>
+                    </div>
+                }  
+          <div className="d-flex justify-content-between mt-4">
+            <h5>Return On Investment</h5>
+          <h4 className="mx-3">{this.state.roiToPercent} %</h4>
+          </div>
+          <div className="d-flex justify-content-between mt-4">
+            <h5>Return On Investment For Each Investor</h5>
+          <h4 className="mx-3">{this.state.roiForEachInvestor} %</h4>
+          </div>
+          <div className="d-flex justify-content-between mt-4">
+            <h5>Annual Return On Investment</h5>
+          <h4 className="mx-3">{this.state.annualReturnOnInvest} %</h4>
+          </div>
+          <div className="d-flex justify-content-between mt-4">
+                <h5>Annual Return On Investment For Each Investor</h5>
+                {this.state.annualReturnOnInvestForEach === "0" ? <h4>1 %</h4> : <h4> {this.state.annualReturnOnInvestForEach} %</h4>}
+            
+              </div>
           </div>
           }
         </div>
