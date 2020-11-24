@@ -54,9 +54,10 @@ class CalculateROI extends Component {
       return this.setState({
         price: detail.price,
         address: detail.address,
-        minimumInvestMent: detail.price / 4
+        minimumInvestMent: parseInt(detail.price / 4)
       });
     });
+
 
     this.setState({
       openROISpinner : false
