@@ -101,8 +101,8 @@ class Details extends Component {
                             <h3>{detail.price}</h3>
                           </div>
                         </div>
-                        <Accordion defaultActiveKey="0" className="mt-4" style={{borderRadius: '0px'}}>
-                          <Card>
+                        <Accordion defaultActiveKey="0" className="mt-4">
+                          <Card style={{borderRadius: '0px'}}>
                             <Accordion.Toggle as={Card.Header} eventKey="0">
                               <div className="d-flex justify-content-between">
                                 <h3>Description</h3>
@@ -113,33 +113,7 @@ class Details extends Component {
                               <Card.Body>{detail.description}</Card.Body>
                             </Accordion.Collapse>
                           </Card>
-                          {/* <Card className="mt-3">
-                        <Accordion.Toggle as={Card.Header} eventKey="1">
-                          <div className="d-flex justify-content-between">
-                            <h3>Surrounding Neighbourhoods</h3>
-                            <h3>+</h3>
-                          </div>
-                        </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="1">
-                          <Card.Body>
-                            {this.state.surroundings.length > 0 ? (
-                              this.state.surroundings.map((x, index) => {
-                                return (
-                                  <div>
-                                    {x.name}, {x.city} , {x.state_code}
-                                  </div>
-                                );
-                              })
-                            ) : (
-                              <div className="text-center">
-                                Surrounding Neighbourhoods Currently Not
-                                Available
-                              </div>
-                            )}
-                          </Card.Body>
-                        </Accordion.Collapse>
-                      </Card> */}
-                          <Card className="mt-3">
+                          <Card className="mt-3" style={{borderRadius: '0px'}}>
                             <Accordion.Toggle as={Card.Header} eventKey="1">
                               <div className="d-flex justify-content-between">
                                 <h3>Features</h3>
@@ -166,7 +140,7 @@ class Details extends Component {
                               </Card.Body>
                             </Accordion.Collapse>
                           </Card>
-                          <Card className="mt-3">
+                          <Card className="mt-3" style={{borderRadius: '0px'}}>
                             <Accordion.Toggle as={Card.Header} eventKey="1">
                               <div className="d-flex justify-content-between">
                                 <h3>Tax History</h3>
