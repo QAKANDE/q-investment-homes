@@ -25,11 +25,10 @@
   font-size: 2rem;
   font-weight: bolder;
   margin-bottom: 3rem;
-  margin-top: 3rem;
-  margin-right: 4rem;
-  margin-left: 4rem;
+  margin-top: 5rem;
+  margin-left: 30rem !important;
 }
 
 .currentlyUnavilableText {
-  margin-left: 2rem;
+  margin-left: 6rem !important;
 }

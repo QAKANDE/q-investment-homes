@@ -155,10 +155,10 @@ class Details extends Component {
                                       return (
                                         <Col>
                                           <div>
-                                            <p>Year - {tax.year}</p>
+                                            <p>Year  -  {tax.year}</p>
                                           </div>
                                           <div>
-                                            <p>Tax Value - £{tax.tax}</p>
+                                            <p>Tax Value - £ {tax.tax}</p>
                                           </div>
                                         </Col>
                                       );
@@ -179,7 +179,7 @@ class Details extends Component {
                   </div>
           );
         })}
-         <button id="calculateROIInsideDetailsModalBtn" onClick={()=> this.redirect()}>
+    <button id="calculateROIInsideDetailsModalBtn" onClick={()=> this.redirect()} style={{marginLeft:"2rem"}}>
                     Calculate ROI
         </button>
           </div>

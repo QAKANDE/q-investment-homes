@@ -29,7 +29,7 @@ class CalculateROI extends Component {
     annualReturnOnInvest: "",
     annualReturnOnInvestForEach: "", 
     reloadCheck: false,
-    minimumInvestMent:""
+    minimumInvestMent: ""
   };
   componentDidMount = async () => {
     const propertyId = this.props.match.params.id;
@@ -45,7 +45,6 @@ class CalculateROI extends Component {
       }
     );
     const data = await res.json();
-    console.log(data);
     this.setState({
       details: data.properties,
     });
@@ -62,8 +61,10 @@ class CalculateROI extends Component {
     this.setState({
       openROISpinner : false
     })
-    console.log(this.state.details);
-    console.log("pie" , this.state.dataForPie)
+
+    console.log("TYPE", typeof this.state.mininumInvestment)
+      
+
   };
 
  
@@ -115,20 +116,19 @@ class CalculateROI extends Component {
   }
 
   calculateROI = (e) => {
-    const data = []
     e.preventDefault()
     const convertValue = parseInt(this.state.investmentValue)
     const convertPropertyPrice = parseInt(this.state.price)
     const mininumInvestment =Math.round(convertPropertyPrice / 4);
-    if (convertValue !== this.state.minimumInvestMent) {
-      swal("Amount Entered isn't minimum investment value", "error")
+    // if (convertValue !== this.state.minimumInvestMent) {
+    //   swal("Amount Entered isn't minimum investment value", "error")
       
       
-    }
-    else if (this.state.investmentValue === "")  {
-      swal("Please Enter A Valid Value", "error")
-    }
-    else  {
+    // }
+    // if (this.state.investmentValue === "")  {
+    //   swal("Please Enter A Valid Value", "error")
+    // }
+    
       const yearlyIncome = 500000; 
       const currentValue = yearlyIncome + convertPropertyPrice
       const profit = currentValue - convertPropertyPrice
@@ -146,19 +146,8 @@ class CalculateROI extends Component {
         roiDiv: true,
     minimumInvestMent:mininumInvestment
       }) 
-      const dataFake = [{
-        Value : this.state.roiToPercent , Label : "ROI"
-      }, { Value: this.state.roiForEachInvestor  ,Label:"ROI For Each Investor" },
-        { Value: this.state.annualReturnOnInvest , Label:"Annual Return On Investment" },
-        { Value: this.state.annualReturnOnInvestForEach , Label:"Annual Return For Each Investor" }]
-      dataFake.map((d) => {
-        const insert = {
-         Label: d.Label, 
-      Value: d.Value,
-        }
-        this.state.dataForPie.push(insert)
-     })
-    }
+    
+   
   }
 
   investInProperty = async () => {  
@@ -171,10 +160,10 @@ class CalculateROI extends Component {
    }
  });
     }
-    else if (this.state.investmentValue === "") {
-      swal ( "Please Enter An Investment Value" ,  "error" )
+    // else if (this.state.investmentValue === "") {
+    //   swal ( "Please Enter An Investment Value" ,  "error" )
        
-    }
+    // }
     else if (this.state.yearlyIncome === "") {
        
       swal ( "Please Calculate ROI" ,  "error" )
@@ -241,7 +230,7 @@ class CalculateROI extends Component {
               <Form.Control
                 type="text"
                 placeholder="Please Enter Investment Value"
-                value={this.state.investmentValue}
+                value={this.state.minimumInvestMent}
                 onChange={(e) => this.updateInvestmentValue(e)}
               />
             
