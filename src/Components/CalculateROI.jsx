@@ -240,7 +240,7 @@ class CalculateROI extends Component {
               <Form.Control
                 type="text"
                 placeholder="Please Enter Investment Value"
-                value={this.state.investmentValue}
+                value={this.state.minimumInvestMent}
                 onChange={(e) => this.updateInvestmentValue(e)}
               />
             
