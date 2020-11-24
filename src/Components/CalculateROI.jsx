@@ -54,7 +54,7 @@ class CalculateROI extends Component {
       return this.setState({
         price: detail.price,
         address: detail.address,
-        minimumInvestMent: parseInt(detail.price / 4)
+        minimumInvestMent: detail.price / 4
       });
     });
 
@@ -241,7 +241,7 @@ class CalculateROI extends Component {
               <Form.Control
                 type="text"
                 placeholder="Please Enter Investment Value"
-                value={this.state.minimumInvestMent}
+                value={this.state.investmentValue}
                 onChange={(e) => this.updateInvestmentValue(e)}
               />
             
