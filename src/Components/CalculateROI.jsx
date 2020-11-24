@@ -201,7 +201,7 @@ class CalculateROI extends Component {
           "Content-Type": "Application/json",
         },
           })
-                         swal("Investment Successful", {  
+                         swal("Investment Successful", "An Email Containing Your Investment Details and Id Has Been Sent To You" , {  
             }).then((ok) => {
               if (ok) {
                 window.location.reload() 
