@@ -101,7 +101,7 @@ class Details extends Component {
                             <h3>{detail.price}</h3>
                           </div>
                         </div>
-                        <Accordion defaultActiveKey="0" className="mt-4">
+                        <Accordion defaultActiveKey="0" className="mt-4" style={{borderRadius: '0px'}}>
                           <Card>
                             <Accordion.Toggle as={Card.Header} eventKey="0">
                               <div className="d-flex justify-content-between">
@@ -202,8 +202,7 @@ class Details extends Component {
                       </>
                     );
                   })}
-              
-            </div>
+                  </div>
           );
         })}
          <button id="calculateROIInsideDetailsModalBtn" onClick={()=> this.redirect()}>
