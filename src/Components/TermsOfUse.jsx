@@ -237,7 +237,7 @@ class TermsOfUse extends Component {
               </ul>
             </li>
             <li className="mt-5">
-              <h4>Waiver and Severability</h4>
+              <h4>Waiver and Severability.</h4>
               <ul className="mx-4">
                 <li>
                   <p>
