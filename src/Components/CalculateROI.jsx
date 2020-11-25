@@ -195,7 +195,7 @@ class CalculateROI extends Component {
         {
           method: "POST",
          body: JSON.stringify({
-          balance : convertValue
+          balance : this.state.minimumInvestMent
         }) ,
         headers: {
           "Content-Type": "Application/json",
