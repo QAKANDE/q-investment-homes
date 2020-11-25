@@ -181,7 +181,7 @@ class CalculateROI extends Component {
     );
       const balanceFromApi = await accountBalanceResponse.json();
       console.log(balanceFromApi)
-      if (balanceFromApi.balance < convertValue || balanceFromApi.balance === 0) {
+      if (balanceFromApi.balance < this.state.minimumInvestMent || balanceFromApi.balance === 0) {
         console.log(balanceFromApi.balance)
                       swal("Please Top Up Your Account", {  
             }).then((ok) => {
@@ -204,12 +204,12 @@ class CalculateROI extends Component {
                          swal("Investment Successful", "An Email Containing Your Investment Details and Id Has Been Sent To You" , {  
             }).then((ok) => {
               if (ok) {
+                console.log("ROI" , deductFromBalance.json())
                 window.location.reload() 
    }
  })
-          this.setState({
-        investmentValue : "" 
-      })
+
+      
       }
 
     }
